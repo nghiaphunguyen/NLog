@@ -7,18 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4201DC941C6DE3F000B7FFFE /* NLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4201DC931C6DE3F000B7FFFE /* NLog.framework */; };
+		4201DC971C6DE41600B7FFFE /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4201DC951C6DE41600B7FFFE /* Realm.framework */; };
+		4201DC981C6DE41600B7FFFE /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4201DC951C6DE41600B7FFFE /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4201DC991C6DE41600B7FFFE /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4201DC961C6DE41600B7FFFE /* RealmSwift.framework */; };
+		4201DC9A1C6DE41600B7FFFE /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4201DC961C6DE41600B7FFFE /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4253B99F1C6D763200DF83A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4253B99E1C6D763200DF83A7 /* AppDelegate.swift */; };
-		4253B9A11C6D763200DF83A7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4253B9A01C6D763200DF83A7 /* ViewController.swift */; };
-		4253B9A41C6D763200DF83A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4253B9A21C6D763200DF83A7 /* Main.storyboard */; };
 		4253B9A61C6D763200DF83A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4253B9A51C6D763200DF83A7 /* Assets.xcassets */; };
 		4253B9A91C6D763200DF83A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4253B9A71C6D763200DF83A7 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4201DC921C6DE31200B7FFFE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4201DC9A1C6DE41600B7FFFE /* RealmSwift.framework in Embed Frameworks */,
+				4201DC981C6DE41600B7FFFE /* Realm.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		4201DC931C6DE3F000B7FFFE /* NLog.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NLog.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/NLog-coympmjkzyggyrbigofzqsguynbn/Build/Products/Debug-iphoneos/NLog.framework"; sourceTree = "<group>"; };
+		4201DC951C6DE41600B7FFFE /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
+		4201DC961C6DE41600B7FFFE /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		4253B99B1C6D763200DF83A7 /* NLogSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NLogSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4253B99E1C6D763200DF83A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4253B9A01C6D763200DF83A7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4253B9A31C6D763200DF83A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4253B9A51C6D763200DF83A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4253B9A81C6D763200DF83A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4253B9AA1C6D763200DF83A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -29,6 +48,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4201DC971C6DE41600B7FFFE /* Realm.framework in Frameworks */,
+				4201DC941C6DE3F000B7FFFE /* NLog.framework in Frameworks */,
+				4201DC991C6DE41600B7FFFE /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +60,9 @@
 		4253B9921C6D763200DF83A7 = {
 			isa = PBXGroup;
 			children = (
+				4201DC951C6DE41600B7FFFE /* Realm.framework */,
+				4201DC961C6DE41600B7FFFE /* RealmSwift.framework */,
+				4201DC931C6DE3F000B7FFFE /* NLog.framework */,
 				4253B99D1C6D763200DF83A7 /* NLogSample */,
 				4253B99C1C6D763200DF83A7 /* Products */,
 			);
@@ -55,8 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				4253B99E1C6D763200DF83A7 /* AppDelegate.swift */,
-				4253B9A01C6D763200DF83A7 /* ViewController.swift */,
-				4253B9A21C6D763200DF83A7 /* Main.storyboard */,
 				4253B9A51C6D763200DF83A7 /* Assets.xcassets */,
 				4253B9A71C6D763200DF83A7 /* LaunchScreen.storyboard */,
 				4253B9AA1C6D763200DF83A7 /* Info.plist */,
@@ -74,6 +97,7 @@
 				4253B9971C6D763200DF83A7 /* Sources */,
 				4253B9981C6D763200DF83A7 /* Frameworks */,
 				4253B9991C6D763200DF83A7 /* Resources */,
+				4201DC921C6DE31200B7FFFE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -124,7 +148,6 @@
 			files = (
 				4253B9A91C6D763200DF83A7 /* LaunchScreen.storyboard in Resources */,
 				4253B9A61C6D763200DF83A7 /* Assets.xcassets in Resources */,
-				4253B9A41C6D763200DF83A7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +158,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4253B9A11C6D763200DF83A7 /* ViewController.swift in Sources */,
 				4253B99F1C6D763200DF83A7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,14 +165,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4253B9A21C6D763200DF83A7 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4253B9A31C6D763200DF83A7 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4253B9A71C6D763200DF83A7 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -182,6 +196,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -227,6 +242,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -249,8 +265,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/iOS";
 				INFOPLIST_FILE = NLogSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.knacker.NLogSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -260,8 +280,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/iOS";
 				INFOPLIST_FILE = NLogSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.knacker.NLogSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -286,6 +310,7 @@
 				4253B9AF1C6D763200DF83A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

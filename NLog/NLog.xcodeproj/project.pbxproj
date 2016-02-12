@@ -7,24 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4201DC791C6D95F000B7FFFE /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4201DC771C6D95F000B7FFFE /* Realm.framework */; };
+		4201DC7A1C6D95F000B7FFFE /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4201DC781C6D95F000B7FFFE /* RealmSwift.framework */; };
+		4201DC7C1C6D9F1300B7FFFE /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4201DC7B1C6D9F1300B7FFFE /* UIColor+Extension.swift */; };
+		4201DC7E1C6DA0D100B7FFFE /* NLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4201DC7D1C6DA0D100B7FFFE /* NLogViewController.swift */; };
 		4253B9BE1C6D766100DF83A7 /* NLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 4253B9BD1C6D766100DF83A7 /* NLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4253B9D31C6D7E0900DF83A7 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4253B9D11C6D7E0900DF83A7 /* UIView+AutoLayout.swift */; };
+		4253B9D41C6D7E0900DF83A7 /* UIView+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4253B9D21C6D7E0900DF83A7 /* UIView+Frame.swift */; };
+		4253B9D81C6D7E3400DF83A7 /* NLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4253B9D61C6D7E3400DF83A7 /* NLog.swift */; };
+		4253B9D91C6D7E3400DF83A7 /* NLogEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4253B9D71C6D7E3400DF83A7 /* NLogEntry.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		4253B9C91C6D768300DF83A7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4253B9C51C6D768300DF83A7 /* NLogSample.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4253B99B1C6D763200DF83A7;
-			remoteInfo = NLogSample;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		4201DC771C6D95F000B7FFFE /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../../Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
+		4201DC781C6D95F000B7FFFE /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../../Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
+		4201DC7B1C6D9F1300B7FFFE /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		4201DC7D1C6DA0D100B7FFFE /* NLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLogViewController.swift; sourceTree = "<group>"; };
 		4253B9BA1C6D766100DF83A7 /* NLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4253B9BD1C6D766100DF83A7 /* NLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NLog.h; sourceTree = "<group>"; };
 		4253B9BF1C6D766100DF83A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4253B9C51C6D768300DF83A7 /* NLogSample.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NLogSample.xcodeproj; path = ../NLogSample/NLogSample.xcodeproj; sourceTree = "<group>"; };
+		4253B9D11C6D7E0900DF83A7 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
+		4253B9D21C6D7E0900DF83A7 /* UIView+Frame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Frame.swift"; sourceTree = "<group>"; };
+		4253B9D61C6D7E3400DF83A7 /* NLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLog.swift; sourceTree = "<group>"; };
+		4253B9D71C6D7E3400DF83A7 /* NLogEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLogEntry.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,16 +37,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4201DC791C6D95F000B7FFFE /* Realm.framework in Frameworks */,
+				4201DC7A1C6D95F000B7FFFE /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4201DC761C6D95E200B7FFFE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4201DC771C6D95F000B7FFFE /* Realm.framework */,
+				4201DC781C6D95F000B7FFFE /* RealmSwift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4253B9B01C6D766100DF83A7 = {
 			isa = PBXGroup;
 			children = (
-				4253B9C51C6D768300DF83A7 /* NLogSample.xcodeproj */,
 				4253B9BC1C6D766100DF83A7 /* NLog */,
 				4253B9BB1C6D766100DF83A7 /* Products */,
 			);
@@ -58,18 +73,41 @@
 		4253B9BC1C6D766100DF83A7 /* NLog */ = {
 			isa = PBXGroup;
 			children = (
+				4201DC761C6D95E200B7FFFE /* Frameworks */,
+				4253B9D51C6D7E1B00DF83A7 /* Log */,
+				4253B9CB1C6D7DD100DF83A7 /* Utils */,
 				4253B9BD1C6D766100DF83A7 /* NLog.h */,
 				4253B9BF1C6D766100DF83A7 /* Info.plist */,
 			);
 			path = NLog;
 			sourceTree = "<group>";
 		};
-		4253B9C61C6D768300DF83A7 /* Products */ = {
+		4253B9CB1C6D7DD100DF83A7 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				4253B9CA1C6D768300DF83A7 /* NLogSample.app */,
+				4253B9D01C6D7E0900DF83A7 /* Extension */,
 			);
-			name = Products;
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		4253B9D01C6D7E0900DF83A7 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4253B9D11C6D7E0900DF83A7 /* UIView+AutoLayout.swift */,
+				4253B9D21C6D7E0900DF83A7 /* UIView+Frame.swift */,
+				4201DC7B1C6D9F1300B7FFFE /* UIColor+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		4253B9D51C6D7E1B00DF83A7 /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				4253B9D61C6D7E3400DF83A7 /* NLog.swift */,
+				4253B9D71C6D7E3400DF83A7 /* NLogEntry.swift */,
+				4201DC7D1C6DA0D100B7FFFE /* NLogViewController.swift */,
+			);
+			path = Log;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,28 +166,12 @@
 			mainGroup = 4253B9B01C6D766100DF83A7;
 			productRefGroup = 4253B9BB1C6D766100DF83A7 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 4253B9C61C6D768300DF83A7 /* Products */;
-					ProjectRef = 4253B9C51C6D768300DF83A7 /* NLogSample.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				4253B9B91C6D766100DF83A7 /* NLog */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		4253B9CA1C6D768300DF83A7 /* NLogSample.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = NLogSample.app;
-			remoteRef = 4253B9C91C6D768300DF83A7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4253B9B81C6D766100DF83A7 /* Resources */ = {
@@ -166,6 +188,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4253B9D91C6D7E3400DF83A7 /* NLogEntry.swift in Sources */,
+				4253B9D41C6D7E0900DF83A7 /* UIView+Frame.swift in Sources */,
+				4201DC7E1C6DA0D100B7FFFE /* NLogViewController.swift in Sources */,
+				4253B9D31C6D7E0900DF83A7 /* UIView+AutoLayout.swift in Sources */,
+				4253B9D81C6D7E3400DF83A7 /* NLog.swift in Sources */,
+				4201DC7C1C6D9F1300B7FFFE /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +221,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -241,6 +270,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -268,9 +298,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/iOS";
 				INFOPLIST_FILE = NLog/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.knacker.NLog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -284,9 +318,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/iOS";
 				INFOPLIST_FILE = NLog/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.knacker.NLog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

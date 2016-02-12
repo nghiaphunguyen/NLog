@@ -7,16 +7,47 @@
 //
 
 import UIKit
+import NLog
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window?.rootViewController = NLogViewController()
+        window?.makeKeyAndVisible()
+        
+        NLog.rollingFrequency = 5 * 60
+        NLog.displayType = .Short
+        NLog.level = .Debug
+        
+        NLog.d("directory=\(UserDirectory)")
+        
+        NLog.saveLogToFile(UserDirectory + "/log.txt")
+        
         return true
+    }
+    
+    func testLog() {
+        Delay(2) { () -> Void in
+            NLog.d("Test debug")
+            NLog.i("Test info \(NSDate().timeIntervalSince1970)")
+            self.testLog()
+        }
+    }
+    
+    func Delay(seconds: NSTimeInterval, _ queue: dispatch_queue_t = dispatch_get_main_queue(), _ completion: () -> Void) {
+        let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(seconds * Double(NSEC_PER_SEC)))
+        
+        dispatch_after(delay, queue, { () -> Void in
+            completion()
+        })
+        
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -42,5 +73,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+var UserDirectory: String {
+    return NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, .UserDomainMask, true)[0]
+}
+
+var LibraryDirectory: String {
+    return NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.LibraryDirectory, .AllDomainsMask, true)[0]
 }
 
