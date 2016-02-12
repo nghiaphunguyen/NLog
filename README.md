@@ -1,0 +1,3 @@
+# NLog
+
+pod 'NLog'
