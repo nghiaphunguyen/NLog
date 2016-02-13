@@ -56,16 +56,16 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
         self.view.backgroundColor = UIColor.whiteColor()
         
         self.view.addSubview(self.searchTextField)
-        self.searchTextField.pinTopConstraintView(offset: StatusBarHeight + self.navigationBarHeight)
-            .pinLeadingConstraintView()
-            .pinTrailingConstraintView()
-            .heightConstraint(50)
+        self.searchTextField.nk_pinTopConstraintView(offset: StatusBarHeight + self.navigationBarHeight)
+            .nk_pinLeadingConstraintView()
+            .nk_pinTrailingConstraintView()
+            .nk_heightConstraint(50)
         
         self.view.addSubview(self.tableView)
-        self.tableView.alignTopConstraintView(self.searchTextField)
-            .pinLeadingConstraintView()
-            .pinBottomConstraintView()
-            .pinTrailingConstraintView()
+        self.tableView.nk_alignTopConstraintView(self.searchTextField)
+            .nk_pinLeadingConstraintView()
+            .nk_pinBottomConstraintView()
+            .nk_pinTrailingConstraintView()
     }
     
     //MARK: Events
@@ -104,7 +104,7 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
 
 extension UIViewController {
     var navigationBarHeight: CGFloat {
-        return self.navigationController?.navigationBar.height ?? 0
+        return self.navigationController?.navigationBar.frame.height ?? 0
     }
 }
 

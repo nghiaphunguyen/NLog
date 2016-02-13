@@ -13,7 +13,6 @@
 		4201DC7E1C6DA0D100B7FFFE /* NLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4201DC7D1C6DA0D100B7FFFE /* NLogViewController.swift */; };
 		4253B9BE1C6D766100DF83A7 /* NLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 4253B9BD1C6D766100DF83A7 /* NLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4253B9D31C6D7E0900DF83A7 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4253B9D11C6D7E0900DF83A7 /* UIView+AutoLayout.swift */; };
-		4253B9D41C6D7E0900DF83A7 /* UIView+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4253B9D21C6D7E0900DF83A7 /* UIView+Frame.swift */; };
 		4253B9D81C6D7E3400DF83A7 /* NLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4253B9D61C6D7E3400DF83A7 /* NLog.swift */; };
 		4253B9D91C6D7E3400DF83A7 /* NLogEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4253B9D71C6D7E3400DF83A7 /* NLogEntry.swift */; };
 /* End PBXBuildFile section */
@@ -27,7 +26,6 @@
 		4253B9BD1C6D766100DF83A7 /* NLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NLog.h; sourceTree = "<group>"; };
 		4253B9BF1C6D766100DF83A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4253B9D11C6D7E0900DF83A7 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
-		4253B9D21C6D7E0900DF83A7 /* UIView+Frame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Frame.swift"; sourceTree = "<group>"; };
 		4253B9D61C6D7E3400DF83A7 /* NLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLog.swift; sourceTree = "<group>"; };
 		4253B9D71C6D7E3400DF83A7 /* NLogEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLogEntry.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,7 +92,6 @@
 			isa = PBXGroup;
 			children = (
 				4253B9D11C6D7E0900DF83A7 /* UIView+AutoLayout.swift */,
-				4253B9D21C6D7E0900DF83A7 /* UIView+Frame.swift */,
 				4201DC7B1C6D9F1300B7FFFE /* UIColor+Extension.swift */,
 			);
 			path = Extension;
@@ -189,7 +186,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4253B9D91C6D7E3400DF83A7 /* NLogEntry.swift in Sources */,
-				4253B9D41C6D7E0900DF83A7 /* UIView+Frame.swift in Sources */,
 				4201DC7E1C6DA0D100B7FFFE /* NLogViewController.swift in Sources */,
 				4253B9D31C6D7E0900DF83A7 /* UIView+AutoLayout.swift in Sources */,
 				4253B9D81C6D7E3400DF83A7 /* NLog.swift in Sources */,
