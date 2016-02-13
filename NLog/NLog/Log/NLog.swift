@@ -199,7 +199,7 @@ public class NLog {
 extension NSDateFormatter {
     static func logDateFormatter() -> NSDateFormatter {
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MM-dd-yyyy hh:mm:ss"
+        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm:ss.SSS"
         return dateFormatter
     }
 }
