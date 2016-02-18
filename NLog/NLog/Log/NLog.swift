@@ -22,7 +22,7 @@ public class NLog {
         function: String,
         line: Int) {
             
-            guard NLog.displayedLevelLogs.contains(level) else {
+            guard NLog.displayedLevels.contains(level) else {
                 return
             }
             
@@ -40,7 +40,7 @@ public class NLog {
             }
             
             if color == nil {
-                color = NLog.levelLogColors[level] ?? UIColor.whiteColor()
+                color = NLog.levelColors[level] ?? UIColor.whiteColor()
             }
             
             let logEntry = NLogEntry(level: level.rawValue, message: message, tag: tag, color: color?.hex ?? 0,
@@ -64,7 +64,7 @@ public class NLog {
         case Short
     }
     
-    public static var levelLogColors: [Level : UIColor] = [
+    public static var levelColors: [Level : UIColor] = [
         .Info: UIColor(hex: 0x3498db),
         .Error: UIColor(hex: 0xe74c3c),
         .Debug: UIColor(hex: 0xf1c40f),
@@ -77,10 +77,10 @@ public class NLog {
         }
     }
     
-    public static let kDebugLevelLogs: [Level] = [.Debug, .Info, .Error, .Warning, .Server]
-    public static let kReleaseLevelLogs: [Level] = [.Info, .Error, .Warning]
+    public static let kDebugLevels: [Level] = [.Debug, .Info, .Error, .Warning, .Server]
+    public static let kReleaseLevels: [Level] = [.Info, .Error, .Warning]
     
-    public static var displayedLevelLogs: [Level] = NLog.kDebugLevelLogs
+    public static var displayedLevels: [Level] = NLog.kDebugLevels
     
     public static var limitDisplayedCharacters = 1000
     

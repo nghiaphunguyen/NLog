@@ -21,7 +21,7 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
     
     lazy var logLevels: [String] = {
         var levels = ["All"]
-        for level in NLog.displayedLevelLogs {
+        for level in NLog.displayedLevels {
             levels.append(level.rawValue)
         }
         

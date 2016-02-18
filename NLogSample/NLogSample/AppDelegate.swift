@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NLog.rollingFrequency = 5 * 60
         NLog.limitDisplayedCharacters = 1000
-        NLog.displayedLevelLogs = NLog.kDebugLevelLogs
+        NLog.displayedLevels = NLog.kDebugLevels
         
         NLog.d("directory=\(UserDirectory)")
         NLog.e("abc")
