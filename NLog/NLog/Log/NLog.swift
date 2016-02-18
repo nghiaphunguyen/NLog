@@ -14,8 +14,6 @@ public class NLog {
     
     static var AppName = (NSBundle.mainBundle().infoDictionary?["CFBundleName"] as? String) ?? ""
     
-    private static var displayLogs: [Level] = [.Debug, .Info, .Error, .Warning, .Server]
-    
     private static func log(level: Level,
         tag: String,
         _ message: String,
@@ -24,7 +22,7 @@ public class NLog {
         function: String,
         line: Int) {
             
-            guard NLog.displayLogs.contains(level) else {
+            guard NLog.displayedLevelLogs.contains(level) else {
                 return
             }
             
@@ -42,27 +40,23 @@ public class NLog {
             }
             
             if color == nil {
-                color = UIColor(hex: level.rawValue)
+                color = NLog.levelLogColors[level] ?? UIColor.whiteColor()
             }
             
             let logEntry = NLogEntry(level: level.rawValue, message: message, tag: tag, color: color?.hex ?? 0,
                 file: file, function: function, line: line)
             logEntry.save()
             
-            if NLog.displayType == .Full {
-                print(logEntry.fullDesc)
-            } else {
-                print(logEntry.desc)
-            }
+            print(logEntry.shortDesc)
     }
     
     //MARK: Public static funcs
-    public enum Level: Int {
-        case Info =  0x3498db // show Info, Error, Waring log
-        case Error = 0xe74c3c // show Error log
-        case Debug = 0xf1c40f // show All logs
-        case Warning = 0xffff // show waring and error log
-        case Server = 0xecf0f1 // push to onwer server
+    public enum Level: String {
+        case Info =  "Info"
+        case Error = "Error"
+        case Debug = "Debug"
+        case Warning = "Waring"
+        case Server = "Server"
     }
     
     public enum DisplayType: Int {
@@ -70,34 +64,29 @@ public class NLog {
         case Short
     }
     
+    public static var levelLogColors: [Level : UIColor] = [
+        .Info: UIColor(hex: 0x3498db),
+        .Error: UIColor(hex: 0xe74c3c),
+        .Debug: UIColor(hex: 0xf1c40f),
+        .Warning: UIColor(hex: 0xffff),
+        .Server: UIColor(hex: 0xecf0f1)]
+    
     public static var rollingFrequency: Double = 24 * 3600 { // 1 day
         didSet {
             NLogEntry.deleteBeforeDate(NSDate().timeIntervalSince1970 - self.rollingFrequency)
         }
     }
     
-    public static var level = Level.Debug {
-        didSet {
-            switch NLog.level {
-            case .Debug :
-                NLog.displayLogs = [.Debug, .Info, .Error, .Warning, .Server]
-            case .Error:
-                NLog.displayLogs = [.Error, .Server]
-            case .Warning:
-                NLog.displayLogs = [.Error, .Warning, .Server]
-            case .Info:
-                NLog.displayLogs = [.Info, .Error, .Warning, .Server]
-            case .Server:
-                NLog.displayLogs = [.Server]
-            }
-        }
-    }
+    public static let kDebugLevelLogs: [Level] = [.Debug, .Info, .Error, .Warning, .Server]
+    public static let kReleaseLevelLogs: [Level] = [.Info, .Error, .Warning]
     
-    public static var displayType = DisplayType.Short
+    public static var displayedLevelLogs: [Level] = NLog.kDebugLevelLogs
+    
+    public static var limitDisplayedCharacters = 1000
     
     public static var filters: [String]? = nil
     
-    public static func saveLogToFile(path: String) -> Bool {
+    public static func saveToFile(path: String) -> Bool {
         if let allLogs = NLogEntry.getAll() {
             var mes = ""
             for log in allLogs {
@@ -206,7 +195,11 @@ extension NSDateFormatter {
 
 extension NSThread {
     var number: Int {
-        return Int(self.description.componentsSeparatedByString("number = ")[1]
-            .componentsSeparatedByString(",").first ?? "") ?? 0
+        let strings = self.description.componentsSeparatedByString("number = ")
+        if strings.count < 2 {
+            return 0
+        }
+        
+        return Int(strings[1].componentsSeparatedByString(",").first ?? "") ?? 0
     }
 }

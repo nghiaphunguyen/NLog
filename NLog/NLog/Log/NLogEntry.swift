@@ -11,7 +11,7 @@ import RealmSwift
 class NLogEntry: Object {
     dynamic var id = ""
     dynamic var createdAt: Double = 0
-    dynamic var level: Int = 0
+    dynamic var level = ""
     dynamic var message = ""
     dynamic var tag: String = ""
     dynamic var color: Int = 0
@@ -19,9 +19,8 @@ class NLogEntry: Object {
     dynamic var function: String = ""
     dynamic var line: Int = 0
     
-    var desc: String {
-        var displayMessage = NLog.dateFormat.stringFromDate(NSDate(timeIntervalSince1970: self.createdAt))
-        displayMessage += " [\(NLog.AppName):\(NSThread.currentThread().number)] "
+    private var desc: String {
+        var displayMessage = ""
         
         if let lv = NLog.Level(rawValue: level) {
             switch lv {
@@ -41,17 +40,21 @@ class NLogEntry: Object {
         displayMessage += tag == "" ? " " : (tag + ": ")
         
         displayMessage += message
-        
         return displayMessage
     }
     
     var fullDesc: String {
-        var fullDesc = self.desc
-        fullDesc += "\n\(file) - \(function) - \(line)"
-        return fullDesc
+        var log = NLog.dateFormat.stringFromDate(NSDate(timeIntervalSince1970: self.createdAt))
+        log += " \(NLog.AppName)[\(NSThread.currentThread().number)] "
+        
+        return "\(log) \((file as NSString).lastPathComponent) - \(line) - \(function)\n\n\(self.desc)\n"
     }
     
-    convenience init(level: Int, message: String, tag: String, color: Int, file: String, function: String, line: Int) {
+    var shortDesc: String {
+        return fullDesc[0..<NLog.limitDisplayedCharacters]
+    }
+    
+    convenience init(level: String, message: String, tag: String, color: Int, file: String, function: String, line: Int) {
         self.init()
         let now = NSDate().timeIntervalSince1970
         self.id = "\(now)"
@@ -113,5 +116,14 @@ extension Realm {
         let realm: Realm? = try! Realm(configuration: config)
         
         return realm
+    }
+}
+
+extension String {
+    subscript(r: Range<Int>) -> String {
+        let startIndex = self.startIndex.advancedBy(min(self.characters.count, r.startIndex))
+        let endIndex = self.startIndex.advancedBy(min(self.characters.count, r.endIndex))
+        
+        return self[Range(start: startIndex, end: endIndex)]
     }
 }

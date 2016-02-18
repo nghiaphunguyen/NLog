@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-public class NLogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+public class NLogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate{
     static let kCellIdentifier = "LogCell"
     
     var logEntrys: Results<NLogEntry>?
@@ -17,13 +17,40 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
     
     var token: RealmSwift.NotificationToken?
     
+    var currentLevel = ""
+    
+    lazy var logLevels: [String] = {
+        var levels = ["All"]
+        for level in NLog.displayedLevelLogs {
+            levels.append(level.rawValue)
+        }
+        
+        return levels
+    }()
+    
     lazy var tableView: UITableView = {
        let tableView = UITableView()
-        tableView.allowsSelection = false
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = UIColor.blackColor()
         return tableView
+    }()
+    
+    lazy var logLevelPicker: UIPickerView = {
+        let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 216))
+        pickerView.dataSource = self
+        pickerView.delegate = self
+        return pickerView
+    }()
+    
+    lazy var logLevelTextField: UITextField = {
+        let textField = UITextField()
+        textField.inputView = self.logLevelPicker
+        textField.text = self.logLevels.first ?? ""
+        textField.backgroundColor = UIColor.blackColor()
+        textField.textColor = UIColor.whiteColor()
+        textField.textAlignment = .Center
+        return textField
     }()
     
     lazy var searchTextField: UITextField = {
@@ -41,14 +68,27 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
         
         self.setupView()
         
+        self.rootLogEntrys = NLogEntry.getAll()
+        self.logEntrys = self.rootLogEntrys
+        self.tableView.reloadData()
+    }
+    
+    public override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
         let realm = Realm.createLogRealm()
         self.token = realm?.addNotificationBlock({ (notification, realm) -> Void in
             self.tableView.reloadData()
         })
+    }
+    
+    public override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
         
-        self.rootLogEntrys = NLogEntry.getAll()
-        self.logEntrys = self.rootLogEntrys
-        self.tableView.reloadData()
+        if let token = self.token {
+            let realm = Realm.createLogRealm()
+            realm?.removeNotification(token)
+        }
     }
     
     //MARK: private functions
@@ -56,12 +96,19 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
         self.view.backgroundColor = UIColor.whiteColor()
         
         self.view.addSubview(self.searchTextField)
+        self.view.addSubview(self.logLevelTextField)
+        self.view.addSubview(self.tableView)
+        
         self.searchTextField.nk_pinTopConstraintView(offset: StatusBarHeight + self.navigationBarHeight)
             .nk_pinLeadingConstraintView()
-            .nk_pinTrailingConstraintView()
+            .nk_alignTrailingConstraintView(self.logLevelTextField)
             .nk_heightConstraint(50)
         
-        self.view.addSubview(self.tableView)
+        self.logLevelTextField.nk_pinTopConstraintView(self.searchTextField)
+            .nk_pinTrailingConstraintView()
+            .nk_widthConstraint(120)
+            .nk_heightConstraintView(self.searchTextField)
+        
         self.tableView.nk_alignTopConstraintView(self.searchTextField)
             .nk_pinLeadingConstraintView()
             .nk_pinBottomConstraintView()
@@ -71,7 +118,7 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
     //MARK: Events
     func searchTextFieldChangedValue() {
         let key = self.searchTextField.text ?? ""
-        self.logEntrys = self.rootLogEntrys?.filter("tag contains '\(key)' OR message contains '\(key)'")
+        self.logEntrys = self.rootLogEntrys?.filter("tag contains '\(key)' OR message contains '\(key)'").filter("level contains '\(currentLevel)'")
         self.tableView.reloadData()
     }
     
@@ -86,19 +133,57 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
             cell = UITableViewCell(style: .Default, reuseIdentifier: self.dynamicType.kCellIdentifier)
             cell?.textLabel?.numberOfLines = 0
             cell?.backgroundColor = UIColor.blackColor()
+            cell?.accessoryType = .DisclosureIndicator
         }
         
         if let logEntry = logEntrys?[indexPath.row] {
             cell?.textLabel?.font = UIFont.systemFontOfSize(10)
-            cell?.textLabel?.text = logEntry.desc
+            cell?.textLabel?.text = logEntry.shortDesc
             cell?.textLabel?.textColor = UIColor(hex: logEntry.color)
         }
         
         return cell!
     }
     
+    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        if let logEntry = logEntrys?[indexPath.row] {
+            let logDetailViewController = NLogDetailViewController()
+            logDetailViewController.logEntry = logEntry
+            
+            if let navigationController = self.navigationController {
+                navigationController.pushViewController(logDetailViewController, animated: true)
+            } else {
+                self.presentViewController(logDetailViewController, animated: true, completion: nil)
+            }
+            
+        }
+    }
+    
     public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 150
+    }
+    
+    //MARK: UIPickerView
+    public func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.logLevels.count
+    }
+    
+    public func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    public func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.logLevels[row]
+    }
+    
+    public func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.currentLevel = self.logLevels[row] == "All" ? "" : self.logLevels[row]
+        self.searchTextFieldChangedValue()
+        
+        self.logLevelTextField.text = self.logLevels[row]
+        self.view.endEditing(true)
     }
 }
 

@@ -19,16 +19,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window?.rootViewController = NLogViewController()
+        window?.rootViewController = UINavigationController(rootViewController: NLogViewController())
         window?.makeKeyAndVisible()
         
         NLog.rollingFrequency = 5 * 60
-        NLog.displayType = .Short
-        NLog.level = .Debug
+        NLog.limitDisplayedCharacters = 1000
+        NLog.displayedLevelLogs = NLog.kDebugLevelLogs
         
         NLog.d("directory=\(UserDirectory)")
+        NLog.e("abc")
         
-        NLog.saveLogToFile(UserDirectory + "/log.txt")
+        NLog.saveToFile(UserDirectory + "/log.txt")
         
         return true
     }
