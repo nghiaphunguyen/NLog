@@ -1,1 +1,1 @@
-github "realm/realm-cocoa"
+git "https://github.com/realm/realm-cocoa" == 0.97.1
