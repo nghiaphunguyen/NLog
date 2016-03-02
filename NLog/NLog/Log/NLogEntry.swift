@@ -44,8 +44,9 @@ class NLogEntry: Object {
     }
     
     private func descLog(desc: String) -> String {
+        let currentThreadNumber = NSThread.currentThread().number
         var log = NLog.dateFormat.stringFromDate(NSDate(timeIntervalSince1970: self.createdAt))
-        log += " \(NLog.AppName)[\(NSThread.currentThread().number)] "
+        log += " \(NLog.AppName)[\(currentThreadNumber == 1 ? "MainThread" : "\(currentThreadNumber)")] "
         
         return "\(log) \((file as NSString).lastPathComponent) - \(line) - \(function)\n\n\(desc)\n"
     }
