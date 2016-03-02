@@ -19,7 +19,9 @@ class NLogDetailViewController: UIViewController {
     
     lazy var closeButton: UIButton = {
         let button = UIButton()
+        button.backgroundColor = UIColor.whiteColor()
         button.setTitle("Close", forState: UIControlState.Normal)
+        button.setTitleColor(UIColor.blackColor(), forState: .Normal)
         button.addTarget(self, action: "tappedCloseButton", forControlEvents: .TouchUpInside)
         return button
     }()

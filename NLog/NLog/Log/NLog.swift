@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class NLog {
+public class NLog: NSObject {
     //MARK: Private
     static var dateFormat = NSDateFormatter.logDateFormatter()
     
@@ -26,6 +26,10 @@ public class NLog {
                 return
             }
             
+            if color == nil {
+                color = NLog.levelColors[level] ?? UIColor.whiteColor()
+            }
+            
             if let filters = NLog.filters {
                 var check = false
                 for filter in filters {
@@ -41,6 +45,16 @@ public class NLog {
             
             if color == nil {
                 color = NLog.levelColors[level] ?? UIColor.whiteColor()
+            }
+            
+            if replaceNLog != nil {
+                replaceNLog?(level: level,
+                    tag: tag,
+                    message: message,
+                    color: color!,
+                    file: file,
+                    function: function,
+                    line: line)
             }
             
             let logEntry = NLogEntry(level: level.rawValue, message: message, tag: tag, color: color?.hex ?? 0,
@@ -86,22 +100,43 @@ public class NLog {
     
     public static var filters: [String]? = nil
     
-    public static func saveToFile(path: String) -> Bool {
-        if let allLogs = NLogEntry.getAll() {
-            var mes = ""
-            for log in allLogs {
-                mes += log.fullDesc + "\n"
-            }
-            
-            do {
-               try mes.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding)
-                return true
-            } catch _ {
-                return false
-            }
+    public static var replaceNLog: ((level: Level,
+    tag: String,
+    message: String,
+    color: UIColor,
+    file: String,
+    function: String,
+    line: Int) -> Void)?
+    
+    public static func saveToFile(limit: Int? = nil, path: String) -> Bool {
+        let mes = self.getLogString(limit)
+        
+        do {
+            try mes.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding)
+            return true
+        } catch _ {
+            return false
         }
         
-        return false
+    }
+    
+    public static func getLogString(var limit: Int? = nil) -> String {
+        var mes = ""
+        
+        guard let allLogs = NLogEntry.getAll() else {
+            return mes
+        }
+        
+        for log in allLogs {
+            mes += log.fullDesc + "\n"
+            
+            limit = limit.map({$0 - 1})
+            
+            if limit == 0 {
+                break
+            }
+        }
+        return mes
     }
     
     public static func d(

@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-public class NLogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate{
+public class NLogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UIGestureRecognizerDelegate{
     static let kCellIdentifier = "LogCell"
     
     var logEntrys: Results<NLogEntry>?
@@ -18,14 +18,28 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
     var token: RealmSwift.NotificationToken?
     
     var currentLevel = ""
+    var currentTag = ""
     
     lazy var logLevels: [String] = {
-        var levels = ["All"]
+        var levels = ["|All|"]
         for level in NLog.displayedLevels {
-            levels.append(level.rawValue)
+            levels.append("|" + level.rawValue + "|")
         }
         
         return levels
+    }()
+    
+    lazy var tags: [String] = {
+        var result = ["#All"]
+        
+        if let tags = NLogTag.getAllTags() {
+            for tag in tags {
+                if tag.id != "" {
+                    result.append("#" + tag.id)
+                }
+            }
+        }
+        return result
     }()
     
     lazy var tableView: UITableView = {
@@ -45,9 +59,26 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
     
     lazy var logLevelTextField: UITextField = {
         let textField = UITextField()
-        textField.inputView = self.logLevelPicker
-        textField.text = self.logLevels.first ?? ""
         textField.backgroundColor = UIColor.blackColor()
+        textField.inputView = self.logLevelPicker
+        textField.text = self.logLevels.first
+        textField.textColor = UIColor.whiteColor()
+        textField.textAlignment = .Center
+        return textField
+    }()
+    
+    lazy var tagPicker: UIPickerView = {
+        let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 216))
+        pickerView.dataSource = self
+        pickerView.delegate = self
+        return pickerView
+    }()
+    
+    lazy var tagTextField: UITextField = {
+        let textField = UITextField()
+        textField.backgroundColor = UIColor.blackColor()
+        textField.inputView = self.tagPicker
+        textField.text = self.tags.first
         textField.textColor = UIColor.whiteColor()
         textField.textAlignment = .Center
         return textField
@@ -56,7 +87,7 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
     lazy var searchTextField: UITextField = {
        let textField = UITextField()
         textField.backgroundColor = UIColor.whiteColor()
-        textField.placeholder = "Filter..."
+        textField.placeholder = "Search..."
         textField.clearButtonMode = .WhileEditing
         textField.addTarget(self, action: "searchTextFieldChangedValue", forControlEvents: .EditingChanged)
         return textField
@@ -71,6 +102,14 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
         self.rootLogEntrys = NLogEntry.getAll()
         self.logEntrys = self.rootLogEntrys
         self.tableView.reloadData()
+        
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: "tappedOutsizeKeyboard")
+        tapRecognizer.delegate = self
+        self.view.addGestureRecognizer(tapRecognizer)
+    }
+    
+    func tappedOutsizeKeyboard() {
+        self.view.endEditing(true)
     }
     
     public override func viewWillAppear(animated: Bool) {
@@ -97,19 +136,30 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
         
         self.view.addSubview(self.searchTextField)
         self.view.addSubview(self.logLevelTextField)
+        self.view.addSubview(self.tagTextField)
         self.view.addSubview(self.tableView)
         
-        self.searchTextField.nk_pinTopConstraintView(offset: StatusBarHeight + self.navigationBarHeight)
-            .nk_pinLeadingConstraintView()
-            .nk_alignTrailingConstraintView(self.logLevelTextField)
-            .nk_heightConstraint(50)
+        var alignTop = StatusBarHeight + self.navigationBarHeight
+        if self.navigationController?.navigationBar.translucent == false {
+            alignTop = 0
+        }
         
-        self.logLevelTextField.nk_pinTopConstraintView(self.searchTextField)
+        self.searchTextField.nk_pinTopConstraintView(offset: alignTop)
+            .nk_pinLeadingConstraintView()
             .nk_pinTrailingConstraintView()
-            .nk_widthConstraint(120)
+            .nk_heightConstraint(40)
+        
+        self.logLevelTextField.nk_alignTopConstraintView(self.searchTextField)
+            .nk_pinLeadingConstraintView()
+            .nk_heightConstraintView(self.searchTextField)
+            .nk_widthConstraintView(nil, multiplier: 0.5)
+        
+        self.tagTextField.nk_pinTopConstraintView(self.logLevelTextField)
+            .nk_alignLeadingConstraintView(self.logLevelTextField)
+            .nk_pinTrailingConstraintView()
             .nk_heightConstraintView(self.searchTextField)
         
-        self.tableView.nk_alignTopConstraintView(self.searchTextField)
+        self.tableView.nk_alignTopConstraintView(self.logLevelTextField)
             .nk_pinLeadingConstraintView()
             .nk_pinBottomConstraintView()
             .nk_pinTrailingConstraintView()
@@ -118,7 +168,7 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
     //MARK: Events
     func searchTextFieldChangedValue() {
         let key = self.searchTextField.text ?? ""
-        self.logEntrys = self.rootLogEntrys?.filter("tag contains '\(key)' OR message contains '\(key)'").filter("level contains '\(currentLevel)'")
+        self.logEntrys = self.rootLogEntrys?.filter("tag contains '\(key)' OR message contains '\(key)'").filter("level contains '\(currentLevel)'").filter("tag contains '\(currentTag)'")
         self.tableView.reloadData()
     }
     
@@ -167,7 +217,11 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
     
     //MARK: UIPickerView
     public func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.logLevels.count
+        if pickerView == self.logLevelPicker {
+            return self.logLevels.count
+        }
+        
+        return self.tags.count
     }
     
     public func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
@@ -175,15 +229,38 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     public func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return self.logLevels[row]
+        
+        if pickerView == self.logLevelPicker {
+            return self.logLevels[row]
+        }
+        
+        return self.tags[row]
     }
     
     public func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.currentLevel = self.logLevels[row] == "All" ? "" : self.logLevels[row]
-        self.searchTextFieldChangedValue()
         
-        self.logLevelTextField.text = self.logLevels[row]
+        if pickerView == self.logLevelPicker {
+            let value = self.logLevels[row].stringByReplacingOccurrencesOfString("|", withString: "")
+            self.currentLevel =  value == "All" ? "" : value
+            self.logLevelTextField.text = self.logLevels[row]
+        } else {
+            let value = self.tags[row].stringByReplacingOccurrencesOfString("#", withString: "")
+            self.currentTag = value == "All" ? "" : value
+            self.tagTextField.text = self.tags[row]
+        }
+        
+        self.searchTextFieldChangedValue()
         self.view.endEditing(true)
+    }
+    
+    //MARK: GestureRegconizer
+    public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+        if touch.view?.isDescendantOfView(self.tableView) == true {
+            self.view.endEditing(true)
+            return false
+        }
+        
+        return true
     }
 }
 

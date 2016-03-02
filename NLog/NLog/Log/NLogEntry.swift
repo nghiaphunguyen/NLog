@@ -25,33 +25,37 @@ class NLogEntry: Object {
         if let lv = NLog.Level(rawValue: level) {
             switch lv {
             case .Debug:
-                displayMessage += "D/"
+                displayMessage += "|Debug|"
             case .Error:
-                displayMessage += "E/"
+                displayMessage += "|Error|"
             case .Info:
-                displayMessage += "I/"
+                displayMessage += "|Info|"
             case .Warning:
-                displayMessage += "W/"
+                displayMessage += "|Warning|"
             case .Server:
-                displayMessage += "S/"
+                displayMessage += "|Server|"
             }
         }
         
-        displayMessage += tag == "" ? " " : (tag + ": ")
+        displayMessage += tag == "" ? " " : (" #" + tag + ": ")
         
         displayMessage += message
         return displayMessage
     }
     
-    var fullDesc: String {
+    private func descLog(desc: String) -> String {
         var log = NLog.dateFormat.stringFromDate(NSDate(timeIntervalSince1970: self.createdAt))
         log += " \(NLog.AppName)[\(NSThread.currentThread().number)] "
         
-        return "\(log) \((file as NSString).lastPathComponent) - \(line) - \(function)\n\n\(self.desc)\n"
+        return "\(log) \((file as NSString).lastPathComponent) - \(line) - \(function)\n\n\(desc)\n"
+    }
+    
+    var fullDesc: String {
+        return descLog(self.desc)
     }
     
     var shortDesc: String {
-        return fullDesc[0..<NLog.limitDisplayedCharacters]
+        return descLog(self.desc[0..<NLog.limitDisplayedCharacters])
     }
     
     convenience init(level: String, message: String, tag: String, color: Int, file: String, function: String, line: Int) {
@@ -77,8 +81,12 @@ class NLogEntry: Object {
             return
         }
         
+        let tag = NLogTag()
+        tag.id = self.tag
+        
         try! realm.write({ () -> Void in
             realm.add(self, update: true)
+            realm.add(tag, update: true)
         })
     }
     

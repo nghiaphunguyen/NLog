@@ -26,10 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NLog.limitDisplayedCharacters = 1000
         NLog.displayedLevels = NLog.kDebugLevels
         
-        NLog.d("directory=\(UserDirectory)")
+        NLog.d("directory=\(UserDirectory)", "DIC")
         NLog.e("abc")
         
-        NLog.saveToFile(UserDirectory + "/log.txt")
+        NLog.saveToFile(path: UserDirectory + "/log.txt")
         
         return true
     }

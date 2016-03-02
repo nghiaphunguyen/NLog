@@ -16,6 +16,7 @@
 		4253B9D31C6D7E0900DF83A7 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4253B9D11C6D7E0900DF83A7 /* UIView+AutoLayout.swift */; };
 		4253B9D81C6D7E3400DF83A7 /* NLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4253B9D61C6D7E3400DF83A7 /* NLog.swift */; };
 		4253B9D91C6D7E3400DF83A7 /* NLogEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4253B9D71C6D7E3400DF83A7 /* NLogEntry.swift */; };
+		428151471C8741FE00C199D6 /* NLogTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428151461C8741FE00C199D6 /* NLogTag.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		4253B9D11C6D7E0900DF83A7 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		4253B9D61C6D7E3400DF83A7 /* NLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLog.swift; sourceTree = "<group>"; };
 		4253B9D71C6D7E3400DF83A7 /* NLogEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLogEntry.swift; sourceTree = "<group>"; };
+		428151461C8741FE00C199D6 /* NLogTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLogTag.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				4253B9D71C6D7E3400DF83A7 /* NLogEntry.swift */,
 				4201DC7D1C6DA0D100B7FFFE /* NLogViewController.swift */,
 				4205B0161C75E86400E985FB /* NLogDetailViewController.swift */,
+				428151461C8741FE00C199D6 /* NLogTag.swift */,
 			);
 			path = Log;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				4253B9D91C6D7E3400DF83A7 /* NLogEntry.swift in Sources */,
 				4205B0171C75E86400E985FB /* NLogDetailViewController.swift in Sources */,
 				4201DC7E1C6DA0D100B7FFFE /* NLogViewController.swift in Sources */,
+				428151471C8741FE00C199D6 /* NLogTag.swift in Sources */,
 				4253B9D31C6D7E0900DF83A7 /* UIView+AutoLayout.swift in Sources */,
 				4253B9D81C6D7E3400DF83A7 /* NLog.swift in Sources */,
 				4201DC7C1C6D9F1300B7FFFE /* UIColor+Extension.swift in Sources */,
