@@ -69,7 +69,7 @@ let logStringFiltered = NLog.getLogString(level: .Server, tag: "OWNER_SERVER", f
 
 ### Save log to file
 ```swift
-(NLog.saveToFile(path: "../log.txt") // optional filter like query log
+NLog.saveToFile(path: "../log.txt") // optional filter like query log
 ```
 
 ### NLogViewController
