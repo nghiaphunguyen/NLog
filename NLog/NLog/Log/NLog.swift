@@ -69,7 +69,7 @@ public class NLog: NSObject {
         case Info =  "Info"
         case Error = "Error"
         case Debug = "Debug"
-        case Warning = "Waring"
+        case Warning = "Warning"
         case Server = "Server"
     }
     
