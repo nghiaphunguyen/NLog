@@ -22,7 +22,7 @@ public class NLog: NSObject {
         function: String,
         line: Int) {
             
-            guard NLog.displayedLevels.contains(level) else {
+            guard NLog.levels.contains(level) else {
                 return
             }
             
@@ -94,7 +94,7 @@ public class NLog: NSObject {
     public static let kDebugLevels: [Level] = [.Debug, .Info, .Error, .Warning, .Server]
     public static let kReleaseLevels: [Level] = [.Info, .Error, .Warning]
     
-    public static var displayedLevels: [Level] = NLog.kDebugLevels
+    public static var levels: [Level] = NLog.kDebugLevels
     
     public static var limitDisplayedCharacters = 1000
     
@@ -108,38 +108,47 @@ public class NLog: NSObject {
     function: String,
     line: Int) -> Void)?
     
-    public static func saveToFile(limit: Int? = nil, path: String) -> Bool {
-        let mes = self.getLogString(limit)
-        
-        do {
-            try mes.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding)
-            return true
-        } catch _ {
-            return false
-        }
-        
-    }
-    
-    public static func getLogString(var limit: Int? = nil) -> String {
-        var mes = ""
-        
-        guard let allLogs = NLogEntry.getAll() else {
-            return mes
-        }
-        
-        for log in allLogs {
-            mes += log.fullDesc + "\n"
+    public static func saveToFile(level: Level? = nil, tag: String = "",
+        filter: String = "",limit: Int? = nil, path: String) -> Bool {
+            let mes = self.getLogString(level, tag: tag, filter: filter, limit: limit)
             
-            limit = limit.map({$0 - 1})
-            
-            if limit == 0 {
-                break
+            do {
+                try mes.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding)
+                return true
+            } catch _ {
+                return false
             }
-        }
-        return mes
+            
     }
     
-    public static func d(
+    public static func getLogString(level: Level? = nil,
+        tag: String = "",
+        filter: String = "",
+        var limit: Int? = nil) -> String {
+            var mes = ""
+            
+            let levelString = level == nil ? "" : level!.rawValue
+            
+            guard let allLogs = NLogEntry.getAll()?
+                .filter("level contains '\(levelString)'")
+                .filter("tag contains '\(tag)'")
+                .filter("message contains '\(filter)'") else {
+                    return mes
+            }
+            
+            for log in allLogs {
+                mes += log.fullDesc + "\n"
+                
+                limit = limit.map({$0 - 1})
+                
+                if limit == 0 {
+                    break
+                }
+            }
+            return mes
+    }
+    
+    public static func debug(
         message: String,
         _ tag: String = "",
         color: UIColor? = nil,
@@ -155,7 +164,7 @@ public class NLog: NSObject {
                 line: line)
     }
     
-    public static func i(
+    public static func info(
         message: String,
         _ tag: String = "",
         color: UIColor? = nil,
@@ -171,7 +180,7 @@ public class NLog: NSObject {
                 line: line)
     }
     
-    public static func w(
+    public static func warning(
         message: String,
         _ tag: String = "",
         color: UIColor? = nil,
@@ -187,7 +196,7 @@ public class NLog: NSObject {
                 line: line)
     }
     
-    public static func e(
+    public static func error(
         message: String,
         _ tag: String = "",
         color: UIColor? = nil,
@@ -203,7 +212,7 @@ public class NLog: NSObject {
                 line: line)
     }
     
-    public static func s(
+    public static func server(
         message: String,
         _ tag: String = "",
         color: UIColor? = nil,
