@@ -74,6 +74,7 @@ let logStringFiltered = NLog.getLogString(level: .Server, tag: "OWNER_SERVER", f
 
 ### NLogViewController
 NLog provides the view to see logs like console log and more fuctions:
+
 1. Search messages.
 2. Filter level log and tag.
 3. See detail of log.
