@@ -5,6 +5,8 @@
 
 ### Pod
 ```bash
+use_frameworks!
+
 pod 'NLog'
 ```
 
