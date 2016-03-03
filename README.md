@@ -1,4 +1,4 @@
-# NLog 1.0.3
+# NLog 1.0.4
 **NLog** is a fast, simple and more powerful logging Framework for iOS.
 
 *Inspired by CocoalumberjackLog and RGA Log.*
@@ -29,7 +29,7 @@ public enum Level: String {
   case Info =  "Info"
   case Error = "Error"
   case Debug = "Debug"
-  case Warning = "Waring"
+  case Warning = "Warning"
   case Server = "Server"
 }
 ```
