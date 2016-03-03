@@ -53,7 +53,7 @@ NLog.levels = [.Debug, .Error, .Server] // only allow this levels - Default is a
 NLog.filters = ["Apple", "Orange", "Banana"] // only allow logs contain filters.
 
 NLog.replaceNLog = {(level, tag, message, color, file, function, line) in
-    //maybe in some case, you don't wanna use us, can use this.
+    //maybe in some cases, you don't wanna use us, can use this to replace NLog by another Log you wanna.
 }
 
 NLog.levelColors[.Debug] = UIColor.blueColor() // change the default level color
