@@ -40,20 +40,20 @@ NLog.debug("Hello world!")
 NLog.server("Authentication failed", "OWNER_SERVER") // Tag = OWNER_SERVER
 ```
 
-##### Print log with specific color --- Using with NLogViewController
+##### Print log with specific color --- Use to display log in NLogViewController
 ```swift
 NLog.info("More colorful", color: UIColor.blueColor())
 ```
 
 ### Optional setup
 ```swift
-NLog.rollingFrequency = 3600 * 24 * 7 // auto-remove log out of a week.
-NLog.limitDisplayedCharacters = 1000 // limit chracteristic displayed on console log
+NLog.rollingFrequency = 3600 * 24 * 7 // auto remove log overdue for a week.
+NLog.limitDisplayedCharacters = 1000 // limit displayed chracteristics of a message on console log.
 NLog.levels = [.Debug, .Error, .Server] // only allow this levels - Default is allow all.
 NLog.filters = ["Apple", "Orange", "Banana"] // only allow logs contain filters.
 
 NLog.replaceNLog = {(level, tag, message, color, file, function, line) in
-    //maybe in some cases, you don't wanna use us, can use this to replace NLog by another Log you wanna.
+    //maybe in some cases, you don't wanna use us, can use this to replace NLog by another Log you want.
 }
 
 NLog.levelColors[.Debug] = UIColor.blueColor() // change the default level color
