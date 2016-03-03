@@ -79,5 +79,5 @@ NLog provides the view to see logs like console log and more fuctions:
 3. See detail of log.
 4. Distinguish log level by colors.
 
-(http://i.imgur.com/F2cPLku.png)
-(http://i.imgur.com/WcaiqHj.png)
+(http://i.imgur.com/F2cPLku.png "NLogViewController")
+(http://i.imgur.com/WcaiqHj.png "NLogDetailViewController")
