@@ -108,9 +108,9 @@ public class NLog: NSObject {
     function: String,
     line: Int) -> Void)?
     
-    public static func saveToFile(level: Level? = nil, tag: String = "",
-        filter: String = "",limit: Int? = nil, path: String) -> Bool {
-            let mes = self.getLogString(level, tag: tag, filter: filter, limit: limit)
+    public static func saveToFile(path path: String, level: Level? = nil, tag: String = "",
+        filter: String = "",limit: Int? = nil) -> Bool {
+            let mes = self.getLogString(level: level, tag: tag, filter: filter, limit: limit)
             
             do {
                 try mes.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding)
@@ -121,7 +121,7 @@ public class NLog: NSObject {
             
     }
     
-    public static func getLogString(level: Level? = nil,
+    public static func getLogString(level level: Level? = nil,
         tag: String = "",
         filter: String = "",
         var limit: Int? = nil) -> String {
