@@ -26,8 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NLog.limitDisplayedCharacters = 1000
         NLog.levels = NLog.kDebugLevels
         
-        NLog.d("directory=\(UserDirectory)", "DIC")
-        NLog.e("abc")
+        NLog.debug("directory=\(UserDirectory)", "DIC")
+        NLog.error("abc")
         
         NLog.saveToFile(path: UserDirectory + "/log.txt")
         
@@ -36,8 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func testLog() {
         Delay(2) { () -> Void in
-            NLog.d("Test debug")
-            NLog.i("Test info \(NSDate().timeIntervalSince1970)")
+            NLog.debug("Test debug")
+            NLog.info("Test info \(NSDate().timeIntervalSince1970)")
             self.testLog()
         }
     }
