@@ -7,7 +7,7 @@
 
 **v1.0.5 - 03/04/2016**
 
-1. Add function sending feedback.
+1. Add function "Send feedback attach log + snapshot of current window" to NKDebugViewController.
 
 # INSTALLATION
 
@@ -89,5 +89,6 @@ NLog provides the view to see logs like console log and more fuctions:
 2. Filter level log and tag.
 3. See detail of log.
 4. Distinguish log level by colors.
+5. Send feedback attach log + snapshot of current window.
 
 ![NLogViewController](http://i.imgur.com/F2cPLku.png)
