@@ -7,25 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4201DC941C6DE3F000B7FFFE /* NLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4201DC931C6DE3F000B7FFFE /* NLog.framework */; };
-		4201DC971C6DE41600B7FFFE /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4201DC951C6DE41600B7FFFE /* Realm.framework */; };
-		4201DC981C6DE41600B7FFFE /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4201DC951C6DE41600B7FFFE /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4201DC991C6DE41600B7FFFE /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4201DC961C6DE41600B7FFFE /* RealmSwift.framework */; };
-		4201DC9A1C6DE41600B7FFFE /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4201DC961C6DE41600B7FFFE /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4253B99F1C6D763200DF83A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4253B99E1C6D763200DF83A7 /* AppDelegate.swift */; };
 		4253B9A61C6D763200DF83A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4253B9A51C6D763200DF83A7 /* Assets.xcassets */; };
 		4253B9A91C6D763200DF83A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4253B9A71C6D763200DF83A7 /* LaunchScreen.storyboard */; };
+		42F671841C89A547005A6852 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F671821C89A547005A6852 /* Realm.framework */; };
+		42F671851C89A547005A6852 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42F671821C89A547005A6852 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		42F671861C89A547005A6852 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F671831C89A547005A6852 /* RealmSwift.framework */; };
+		42F671871C89A547005A6852 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42F671831C89A547005A6852 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		42F671891C89A54B005A6852 /* NLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4201DC931C6DE3F000B7FFFE /* NLog.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		4201DC921C6DE31200B7FFFE /* Embed Frameworks */ = {
+		42F671881C89A547005A6852 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4201DC9A1C6DE41600B7FFFE /* RealmSwift.framework in Embed Frameworks */,
-				4201DC981C6DE41600B7FFFE /* Realm.framework in Embed Frameworks */,
+				42F671871C89A547005A6852 /* RealmSwift.framework in Embed Frameworks */,
+				42F671851C89A547005A6852 /* Realm.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -34,13 +34,13 @@
 
 /* Begin PBXFileReference section */
 		4201DC931C6DE3F000B7FFFE /* NLog.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NLog.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/NLog-coympmjkzyggyrbigofzqsguynbn/Build/Products/Debug-iphoneos/NLog.framework"; sourceTree = "<group>"; };
-		4201DC951C6DE41600B7FFFE /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
-		4201DC961C6DE41600B7FFFE /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		4253B99B1C6D763200DF83A7 /* NLogSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NLogSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4253B99E1C6D763200DF83A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4253B9A51C6D763200DF83A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4253B9A81C6D763200DF83A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4253B9AA1C6D763200DF83A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42F671821C89A547005A6852 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
+		42F671831C89A547005A6852 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,9 +48,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4201DC971C6DE41600B7FFFE /* Realm.framework in Frameworks */,
-				4201DC941C6DE3F000B7FFFE /* NLog.framework in Frameworks */,
-				4201DC991C6DE41600B7FFFE /* RealmSwift.framework in Frameworks */,
+				42F671861C89A547005A6852 /* RealmSwift.framework in Frameworks */,
+				42F671841C89A547005A6852 /* Realm.framework in Frameworks */,
+				42F671891C89A54B005A6852 /* NLog.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,8 +60,8 @@
 		4253B9921C6D763200DF83A7 = {
 			isa = PBXGroup;
 			children = (
-				4201DC951C6DE41600B7FFFE /* Realm.framework */,
-				4201DC961C6DE41600B7FFFE /* RealmSwift.framework */,
+				42F671821C89A547005A6852 /* Realm.framework */,
+				42F671831C89A547005A6852 /* RealmSwift.framework */,
 				4201DC931C6DE3F000B7FFFE /* NLog.framework */,
 				4253B99D1C6D763200DF83A7 /* NLogSample */,
 				4253B99C1C6D763200DF83A7 /* Products */,
@@ -97,7 +97,7 @@
 				4253B9971C6D763200DF83A7 /* Sources */,
 				4253B9981C6D763200DF83A7 /* Frameworks */,
 				4253B9991C6D763200DF83A7 /* Resources */,
-				4201DC921C6DE31200B7FFFE /* Embed Frameworks */,
+				42F671881C89A547005A6852 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

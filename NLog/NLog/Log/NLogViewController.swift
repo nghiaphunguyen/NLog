@@ -115,6 +115,8 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "tappedActionButton")
+        
         let realm = Realm.createLogRealm()
         self.token = realm?.addNotificationBlock({ (notification, realm) -> Void in
             self.tableView.reloadData()
@@ -131,6 +133,36 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     //MARK: private functions
+    func tappedActionButton() {
+        let sendFeedbackAlertAction = UIAlertAction(title: "Send feedback", style: UIAlertActionStyle.Default) { (action) -> Void in
+            self.sendFeedback()
+        }
+        
+        let clearAlertAction = UIAlertAction(title: "Clear logs", style: UIAlertActionStyle.Destructive) { (action) -> Void in
+            self.clearLogs()
+        }
+        
+        let cancelAlertAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+        
+        let alertController = UIAlertController(title: "", message: "", preferredStyle: .ActionSheet)
+        alertController.addAction(sendFeedbackAlertAction)
+        alertController.addAction(clearAlertAction)
+        alertController.addAction(cancelAlertAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func clearLogs() {
+        NLogEntry.deleteBeforeDate(NSDate().timeIntervalSince1970)
+        self.tableView.reloadData()
+    }
+    
+    func sendFeedback() {
+       let logString = NLog.getLogString(level: NLog.Level(rawValue: self.currentLevel), tag: self.currentTag, filter: self.searchTextField.text ?? "", limit: nil)
+        
+        self.presentViewController(NKFeedBackMailViewController().setup(logString), animated: true, completion: nil)
+    }
+    
     func setupView() {
         self.view.backgroundColor = UIColor.whiteColor()
         

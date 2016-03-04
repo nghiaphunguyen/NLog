@@ -47,6 +47,18 @@ class NLogDetailViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: self, action: "tappedSaveButton")
+    }
+    
+    func tappedSaveButton() {
+        let logString = self.logEntry?.fullDesc ?? ""
+        
+        self.presentViewController(NKFeedBackMailViewController().setup(logString), animated: true, completion: nil)
+    }
+    
     func setUpView() {
         self.view.backgroundColor = UIColor.blackColor()
         

@@ -55,6 +55,7 @@ public class NLog: NSObject {
                     file: file,
                     function: function,
                     line: line)
+                return
             }
             
             let logEntry = NLogEntry(level: level.rawValue, message: message, tag: tag, color: color?.hex ?? 0,
