@@ -1,7 +1,13 @@
-# NLog 1.0.4
+# NLog 1.0.5
 **NLog** is a fast, simple and more powerful logging Framework for iOS.
 
 *Inspired by CocoalumberjackLog and RGA Log.*
+
+# CHANGE LOG
+
+**v1.0.5 - 03/04/2016**
+
+1. Add function sending feedback.
 
 # INSTALLATION
 
