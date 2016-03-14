@@ -28,6 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NLog.debug("directory=\(UserDirectory)", "DIC")
         NLog.error("abc")
+        NLog.info("abc")
+        NLog.server("abc")
+        NLog.warning("xxx")
         
         NLog.saveToFile(path: UserDirectory + "/log.txt")
         

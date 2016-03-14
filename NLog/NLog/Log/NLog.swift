@@ -80,11 +80,11 @@ public class NLog: NSObject {
     }
     
     public static var levelColors: [Level : UIColor] = [
-        .Info: UIColor(hex: 0x3498db),
-        .Error: UIColor(hex: 0xe74c3c),
-        .Debug: UIColor(hex: 0xf1c40f),
-        .Warning: UIColor(hex: 0xffff),
-        .Server: UIColor(hex: 0xecf0f1)]
+        .Info: UIColor(hex: 0x9CCC65),
+        .Error: UIColor(hex: 0xEF5350),
+        .Debug: UIColor(hex: 0xffffff),
+        .Warning: UIColor(hex: 0xFFCA28),
+        .Server: UIColor(hex: 0x29B6F6)]
     
     public static var rollingFrequency: Double = 24 * 3600 { // 1 day
         didSet {

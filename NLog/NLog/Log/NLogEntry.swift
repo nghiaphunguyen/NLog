@@ -48,7 +48,7 @@ class NLogEntry: Object {
         var log = NLog.dateFormat.stringFromDate(NSDate(timeIntervalSince1970: self.createdAt))
         log += " \(NLog.AppName)[\(currentThreadNumber == 1 ? "MainThread" : "\(currentThreadNumber)")] "
         
-        return "\(log) \((file as NSString).lastPathComponent) - \(line) - \(function)\n\n\(desc)\n"
+        return "\(log) \((file as NSString).lastPathComponent) - \(line) - \(function)\n\(desc)\n"
     }
     
     var fullDesc: String {
