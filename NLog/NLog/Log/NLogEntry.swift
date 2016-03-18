@@ -46,7 +46,7 @@ class NLogEntry: Object {
     private func descLog(desc: String) -> String {
         let currentThreadNumber = NSThread.currentThread().number
         var log = NLog.dateFormat.stringFromDate(NSDate(timeIntervalSince1970: self.createdAt))
-        log += " \(NLog.AppName)[\(currentThreadNumber == 1 ? "MainThread" : "\(currentThreadNumber)")] "
+        log += " \(AppName)[\(currentThreadNumber == 1 ? "MainThread" : "\(currentThreadNumber)")] "
         
         return "\(log) \((file as NSString).lastPathComponent) - \(line) - \(function)\n\(desc)\n"
     }
@@ -110,29 +110,3 @@ class NLogEntry: Object {
     }
 }
 
-extension Realm {
-    static func createLogRealm() -> Realm? {
-        guard let path = Realm.Configuration().path else {
-            return nil
-        }
-        
-        guard let logPath = NSURL.fileURLWithPath(path).URLByDeletingLastPathComponent?
-            .URLByAppendingPathComponent("log.realm").path else {
-            return nil
-        }
-        
-        let config = Realm.Configuration(path: logPath)
-        let realm: Realm? = try! Realm(configuration: config)
-        
-        return realm
-    }
-}
-
-extension String {
-    subscript(r: Range<Int>) -> String {
-        let startIndex = self.startIndex.advancedBy(min(self.characters.count, r.startIndex))
-        let endIndex = self.startIndex.advancedBy(min(self.characters.count, r.endIndex))
-        
-        return self[Range(start: startIndex, end: endIndex)]
-    }
-}

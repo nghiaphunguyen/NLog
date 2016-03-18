@@ -25,14 +25,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NLog.rollingFrequency = 5 * 60
         NLog.limitDisplayedCharacters = 1000
         NLog.levels = NLog.kDebugLevels
+        NLog.enableXcodeColors = true
         
         NLog.debug("directory=\(UserDirectory)", "DIC")
         NLog.error("abc")
         NLog.info("abc")
         NLog.server("abc")
         NLog.warning("xxx")
-        
-        NLog.saveToFile(path: UserDirectory + "/log.txt")
+//        ColorLog.blue("nghia")
+//        NLog.saveToFile(path: UserDirectory + "/log.txt")
         
         return true
     }
@@ -85,5 +86,37 @@ var UserDirectory: String {
 
 var LibraryDirectory: String {
     return NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.LibraryDirectory, .AllDomainsMask, true)[0]
+}
+
+struct ColorLog {
+    static let ESCAPE = "\u{001b}["
+    
+    static let RESET_FG = ESCAPE + "fg;" // Clear any foreground color
+    static let RESET_BG = ESCAPE + "bg;" // Clear any background color
+    static let RESET = ESCAPE + ";"   // Clear any foreground or background color
+    
+    static func red<T>(object: T) {
+        print("\(ESCAPE)fg255,0,0;\(object)\(RESET)")
+    }
+    
+    static func green<T>(object: T) {
+        print("\(ESCAPE)fg0,255,0;\(object)\(RESET)")
+    }
+    
+    static func blue<T>(object: T) {
+        print("\(ESCAPE)fg0,0,255;\(object)\(RESET)")
+    }
+    
+    static func yellow<T>(object: T) {
+        print("\(ESCAPE)fg255,255,0;\(object)\(RESET)")
+    }
+    
+    static func purple<T>(object: T) {
+        print("\(ESCAPE)fg255,0,255;\(object)\(RESET)")
+    }
+    
+    static func cyan<T>(object: T) {
+        print("\(ESCAPE)fg0,255,255;\(object)\(RESET)")
+    }
 }
 

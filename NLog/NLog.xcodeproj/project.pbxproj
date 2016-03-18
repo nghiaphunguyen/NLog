@@ -12,6 +12,7 @@
 		4201DC7C1C6D9F1300B7FFFE /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4201DC7B1C6D9F1300B7FFFE /* UIColor+Extension.swift */; };
 		4201DC7E1C6DA0D100B7FFFE /* NLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4201DC7D1C6DA0D100B7FFFE /* NLogViewController.swift */; };
 		4205B0171C75E86400E985FB /* NLogDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4205B0161C75E86400E985FB /* NLogDetailViewController.swift */; };
+		42424CD21C9C4E140059693B /* NLogHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42424CD11C9C4E140059693B /* NLogHelper.swift */; };
 		4253B9BE1C6D766100DF83A7 /* NLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 4253B9BD1C6D766100DF83A7 /* NLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4253B9D31C6D7E0900DF83A7 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4253B9D11C6D7E0900DF83A7 /* UIView+AutoLayout.swift */; };
 		4253B9D81C6D7E3400DF83A7 /* NLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4253B9D61C6D7E3400DF83A7 /* NLog.swift */; };
@@ -26,6 +27,7 @@
 		4201DC7B1C6D9F1300B7FFFE /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		4201DC7D1C6DA0D100B7FFFE /* NLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLogViewController.swift; sourceTree = "<group>"; };
 		4205B0161C75E86400E985FB /* NLogDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLogDetailViewController.swift; sourceTree = "<group>"; };
+		42424CD11C9C4E140059693B /* NLogHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLogHelper.swift; sourceTree = "<group>"; };
 		4253B9BA1C6D766100DF83A7 /* NLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4253B9BD1C6D766100DF83A7 /* NLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NLog.h; sourceTree = "<group>"; };
 		4253B9BF1C6D766100DF83A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				4201DC7D1C6DA0D100B7FFFE /* NLogViewController.swift */,
 				4205B0161C75E86400E985FB /* NLogDetailViewController.swift */,
 				428151461C8741FE00C199D6 /* NLogTag.swift */,
+				42424CD11C9C4E140059693B /* NLogHelper.swift */,
 			);
 			path = Log;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 				4201DC7E1C6DA0D100B7FFFE /* NLogViewController.swift in Sources */,
 				428151471C8741FE00C199D6 /* NLogTag.swift in Sources */,
 				4253B9D31C6D7E0900DF83A7 /* UIView+AutoLayout.swift in Sources */,
+				42424CD21C9C4E140059693B /* NLogHelper.swift in Sources */,
 				4253B9D81C6D7E3400DF83A7 /* NLog.swift in Sources */,
 				4201DC7C1C6D9F1300B7FFFE /* UIColor+Extension.swift in Sources */,
 			);

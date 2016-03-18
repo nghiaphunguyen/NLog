@@ -12,8 +12,6 @@ public class NLog: NSObject {
     //MARK: Private
     static var dateFormat = NSDateFormatter.logDateFormatter()
     
-    static var AppName = (NSBundle.mainBundle().infoDictionary?["CFBundleName"] as? String) ?? ""
-    
     private static func log(level: Level,
         tag: String,
         _ message: String,
@@ -62,7 +60,21 @@ public class NLog: NSObject {
                 file: file, function: function, line: line)
             logEntry.save()
             
-            print(logEntry.shortDesc)
+            
+            if let color = color where NLog.enableXcodeColors {
+                NLog.printLog(logEntry.shortDesc, withColor: color)
+            } else {
+                print(logEntry.shortDesc)
+            }
+            
+    }
+    
+    private static func printLog(log: String, withColor color: UIColor) {
+        let rgb = color.rgb
+        
+        let prefix = "\u{001b}["
+        let colorLog = prefix + "fg\(rgb.r),\(rgb.g),\(rgb.b);\(log)\(prefix);"
+        print(colorLog)
     }
     
     //MARK: Public static funcs
@@ -78,6 +90,10 @@ public class NLog: NSObject {
         case Full
         case Short
     }
+    
+    //Turn it on if you install XcodeColors plugin
+    // ses also at https://github.com/robbiehanson/XcodeColors
+    public static var enableXcodeColors = false
     
     public static var levelColors: [Level : UIColor] = [
         .Info: UIColor(hex: 0x9CCC65),
@@ -227,24 +243,5 @@ public class NLog: NSObject {
                 file: file,
                 function: function,
                 line: line)
-    }
-}
-
-extension NSDateFormatter {
-    static func logDateFormatter() -> NSDateFormatter {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm:ss.SSS"
-        return dateFormatter
-    }
-}
-
-extension NSThread {
-    var number: Int {
-        let strings = self.description.componentsSeparatedByString("number = ")
-        if strings.count < 2 {
-            return 0
-        }
-        
-        return Int(strings[1].componentsSeparatedByString(",").first ?? "") ?? 0
     }
 }
