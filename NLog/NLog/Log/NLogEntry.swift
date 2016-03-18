@@ -17,6 +17,7 @@ class NLogEntry: Object {
     dynamic var color: Int = 0
     dynamic var file: String = ""
     dynamic var function: String = ""
+    dynamic var stackTrace: String = ""
     dynamic var line: Int = 0
     
     private var desc: String {
@@ -55,11 +56,15 @@ class NLogEntry: Object {
         return descLog(self.desc)
     }
     
+    var fullDescWithStackTrace: String {
+        return self.fullDesc + "=====================================\n" + self.stackTrace + "=====================================\n"
+    }
+    
     var shortDesc: String {
         return descLog(self.desc[0..<NLog.limitDisplayedCharacters])
     }
     
-    convenience init(level: String, message: String, tag: String, color: Int, file: String, function: String, line: Int) {
+    convenience init(level: String, message: String, tag: String, color: Int, file: String, function: String, line: Int, stackTrace: String) {
         self.init()
         let now = NSDate().timeIntervalSince1970
         self.id = "\(now)"
@@ -71,6 +76,7 @@ class NLogEntry: Object {
         self.file = file
         self.function = function
         self.line = line
+        self.stackTrace = stackTrace
     }
     
     override class func primaryKey() -> String? {

@@ -42,7 +42,7 @@ class NLogDetailViewController: UIViewController {
         self.setUpView()
         
         if let logEntry = self.logEntry {
-            self.textView.text = logEntry.fullDesc
+            self.textView.text = logEntry.fullDescWithStackTrace
             self.textView.textColor = UIColor(hex: logEntry.color)
         }
     }
@@ -54,7 +54,7 @@ class NLogDetailViewController: UIViewController {
     }
     
     func tappedSaveButton() {
-        let logString = self.logEntry?.fullDesc ?? ""
+        let logString = self.logEntry?.fullDescWithStackTrace ?? ""
         
         self.presentViewController(NKFeedBackMailViewController().setup(logString), animated: true, completion: nil)
     }

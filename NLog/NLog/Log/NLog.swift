@@ -56,8 +56,15 @@ public class NLog: NSObject {
                 return
             }
             
+            let stackTrace = NSThread.callStackSymbols()
+            var stackTraceString = ""
+            
+            if stackTrace.count > 2 {
+                stackTraceString = Array(stackTrace[2...min(stackTrace.count, NLog.maxStackTrace)]).toString
+            }
+            
             let logEntry = NLogEntry(level: level.rawValue, message: message, tag: tag, color: color?.hex ?? 0,
-                file: file, function: function, line: line)
+                file: file, function: function, line: line, stackTrace: stackTraceString)
             logEntry.save()
             
             
@@ -73,11 +80,19 @@ public class NLog: NSObject {
         let rgb = color.rgb
         
         let prefix = "\u{001b}["
-        let colorLog = prefix + "fg\(rgb.r),\(rgb.g),\(rgb.b);\(log)\(prefix);"
+        let colorLog = prefix + "fg\(rgb.r),\(rgb.g),\(rgb.b);\(log)\(prefix);\n"
         print(colorLog)
     }
     
     //MARK: Public static funcs
+    public struct Emotion {
+        static let Success = ""
+        static let Fail = ""
+        static let Processing = ""
+        static let Warning = ""
+        static let Error = ""
+    }
+    
     public enum Level: String {
         case Info =  "Info"
         case Error = "Error"
@@ -115,6 +130,8 @@ public class NLog: NSObject {
     
     public static var limitDisplayedCharacters = 1000
     
+    public static var maxStackTrace = 7
+    
     public static var filters: [String]? = nil
     
     public static var replaceNLog: ((level: Level,
@@ -126,8 +143,8 @@ public class NLog: NSObject {
     line: Int) -> Void)?
     
     public static func saveToFile(path path: String, level: Level? = nil, tag: String = "",
-        filter: String = "",limit: Int? = nil) -> Bool {
-            let mes = self.getLogString(level: level, tag: tag, filter: filter, limit: limit)
+        filter: String = "",limit: Int? = nil, stackTrace: Bool = false) -> Bool {
+            let mes = self.getLogString(level: level, tag: tag, filter: filter, limit: limit, stackTrace: stackTrace)
             
             do {
                 try mes.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding)
@@ -141,7 +158,8 @@ public class NLog: NSObject {
     public static func getLogString(level level: Level? = nil,
         tag: String = "",
         filter: String = "",
-        var limit: Int? = nil) -> String {
+        var limit: Int? = nil,
+        stackTrace: Bool = false) -> String {
             var mes = ""
             
             let levelString = level == nil ? "" : level!.rawValue
@@ -154,7 +172,9 @@ public class NLog: NSObject {
             }
             
             for log in allLogs {
-                mes += log.fullDesc + "\n"
+                
+                let logString = stackTrace ? log.fullDescWithStackTrace : log.fullDesc
+                mes += logString + "\n"
                 
                 limit = limit.map({$0 - 1})
                 

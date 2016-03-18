@@ -40,6 +40,17 @@ extension String {
     }
 }
 
+extension Array {
+    var toString: String {
+        var result = ""
+        for entry in self {
+            result += "\(entry)" + "\n"
+        }
+        
+        return result
+    }
+}
+
 let logConfig: Realm.Configuration? = {
     guard let path = Realm.Configuration().path else {
         return nil
@@ -50,7 +61,7 @@ let logConfig: Realm.Configuration? = {
             return nil
     }
     
-    let config = Realm.Configuration(path: logPath)
+    let config = Realm.Configuration(path: logPath, schemaVersion: 1)
     return config
 }()
 
