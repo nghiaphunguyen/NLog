@@ -1,9 +1,15 @@
-# NLog 1.0.5
+# NLog 1.0.9
 **NLog** is a fast, simple and more powerful logging Framework for iOS.
 
 *Inspired by CocoalumberjackLog and RGA Log.*
 
 # CHANGE LOG
+
+**v1.0.9 - 03/20/2016**
+
+1. Support [XcodeColors](https://github.com/robbiehanson/XcodeColors) plugin that make console log colorful. 
+2. Add stack trace option.
+3. Add 2 static property userEmail and userId to NKFeedbackMailViewController.
 
 **v1.0.5 - 03/04/2016**
 
@@ -61,7 +67,7 @@ NLog.rollingFrequency = 3600 * 24 * 7 // auto remove log overdue for a week.
 NLog.limitDisplayedCharacters = 1000 // limit displayed chracteristics of a message on console log.
 NLog.levels = [.Debug, .Error, .Server] // only allow this levels - Default is allow all.
 NLog.filters = ["Apple", "Orange", "Banana"] // only allow logs contain filters.
-
+NLog.maxStackTrace = 10 // maximum stack you wanna trace
 NLog.replaceNLog = {(level, tag, message, color, file, function, line) in
     //maybe in some cases, you don't wanna use us, can use this to replace NLog by another Log you want.
 }
@@ -74,7 +80,7 @@ NLog.levelColors[.Debug] = UIColor.blueColor() // change the default level color
 let logString = NLog.getLogString() // get all log
 
 // get with filter
-let logStringFiltered = NLog.getLogString(level: .Server, tag: "OWNER_SERVER", filter: "user/me", limit: 1000)
+let logStringFiltered = NLog.getLogString(level: .Server, tag: "OWNER_SERVER", filter: "user/me", limit: 1000, stackTrace: false)
 ```
 
 ### Save log to file
