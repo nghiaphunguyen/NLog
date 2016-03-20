@@ -144,7 +144,7 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
         
         let cancelAlertAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
         
-        let alertController = UIAlertController(title: "", message: "", preferredStyle: .ActionSheet)
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
         alertController.addAction(sendFeedbackAlertAction)
         alertController.addAction(clearAlertAction)
         alertController.addAction(cancelAlertAction)
@@ -158,9 +158,28 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func sendFeedback() {
-       let logString = NLog.getLogString(level: NLog.Level(rawValue: self.currentLevel), tag: self.currentTag, filter: self.searchTextField.text ?? "", limit: nil)
         
-        self.presentViewController(NKFeedBackMailViewController().setup(logString), animated: true, completion: nil)
+        let sendFeedbackBlock: (stackTrace: Bool) -> Void = { (stackTrace) in
+            let logString = NLog.getLogString(level: NLog.Level(rawValue: self.currentLevel), tag: self.currentTag, filter: self.searchTextField.text ?? "", limit: nil, stackTrace: stackTrace)
+            
+            self.presentViewController(NKFeedBackMailViewController().setup(logString), animated: true, completion: nil)
+        }
+        
+        let actionNonStackTrace = UIAlertAction(title: "Non Stack Trace", style: UIAlertActionStyle.Default) { (_) -> Void in
+            sendFeedbackBlock(stackTrace: false)
+        }
+        
+        let actionStackTrace = UIAlertAction(title: "With Stack Trace", style: UIAlertActionStyle.Default) { (_) -> Void in
+            sendFeedbackBlock(stackTrace: true)
+        }
+        
+        let actionCancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+        
+        let alertViewController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        alertViewController.addAction(actionNonStackTrace)
+        alertViewController.addAction(actionStackTrace)
+        alertViewController.addAction(actionCancel)
+        self.presentViewController(alertViewController, animated: true, completion: nil)
     }
     
     func setupView() {

@@ -9,12 +9,19 @@
 import MessageUI
 import UIKit
 
-class NKFeedBackMailViewController: MFMailComposeViewController, MFMailComposeViewControllerDelegate {
+public class NKFeedBackMailViewController: MFMailComposeViewController, MFMailComposeViewControllerDelegate {
     
-    func setup(logString: String) -> NKFeedBackMailViewController {
+    public static var userEmail: String?
+    public static var userId: String?
+    
+    public func setup(logString: String) -> NKFeedBackMailViewController {
         self.mailComposeDelegate = self
         
-        let body = "</br></br>_______________</br>App Name: \(NKAppInfo.Name)</br>App Version: \(NKAppInfo.Version) - \(NKAppInfo.Build)</br>Device Info: \(NKDeviceInfo.Model) - \(NKDeviceInfo.Version)" //NPN TODO: add device info
+        let userEmailHtlmString = NKFeedBackMailViewController.userEmail != nil ? "</br>User emai: \(NKFeedBackMailViewController.userEmail!)" : ""
+        
+        let userIdHtlmString = NKFeedBackMailViewController.userId != nil ? "</br>User id: \(NKFeedBackMailViewController.userId!)" : ""
+        
+         let body = "</br></br>_______________</br>App Name: \(NKAppInfo.Name)</br>App Version: \(NKAppInfo.Version) - \(NKAppInfo.Build)\(userIdHtlmString)\(userEmailHtlmString)</br>Device Info: \(NKDeviceInfo.Model) - \(NKDeviceInfo.Version)" //NPN TODO: add device info
         
         self.setMessageBody(body, isHTML: true)
         
@@ -33,7 +40,7 @@ class NKFeedBackMailViewController: MFMailComposeViewController, MFMailComposeVi
         return self
     }
     
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+    public func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

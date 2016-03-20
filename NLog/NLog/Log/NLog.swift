@@ -108,7 +108,20 @@ public class NLog: NSObject {
     
     //Turn it on if you install XcodeColors plugin
     // ses also at https://github.com/robbiehanson/XcodeColors
-    public static var enableXcodeColors = false
+    public static var enableXcodeColors: Bool {
+        set {
+            if newValue {
+                setenv("XcodeColors", "YES", 0);
+            } else {
+                setenv("XcodeColors", "NO", 0);
+            }
+        }
+        
+        get {
+            let xcode_colors = getenv("XcodeColors");
+            return (xcode_colors != nil && (strcmp(xcode_colors, "YES") == 0))
+        }
+    }
     
     public static var levelColors: [Level : UIColor] = [
         .Info: UIColor(hex: 0x9CCC65),
