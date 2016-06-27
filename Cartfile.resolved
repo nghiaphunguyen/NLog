@@ -1,1 +1,1 @@
-github "realm/realm-cocoa" "v0.98.1"
+git "https://github.com/realm/realm-cocoa" "v1.0.1"

@@ -89,7 +89,7 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
         textField.backgroundColor = UIColor.whiteColor()
         textField.placeholder = "Search..."
         textField.clearButtonMode = .WhileEditing
-        textField.addTarget(self, action: "searchTextFieldChangedValue", forControlEvents: .EditingChanged)
+        textField.addTarget(self, action: #selector(NLogViewController.searchTextFieldChangedValue), forControlEvents: .EditingChanged)
         return textField
     }()
     
@@ -103,7 +103,7 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
         self.logEntrys = self.rootLogEntrys
         self.tableView.reloadData()
         
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: "tappedOutsizeKeyboard")
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(NLogViewController.tappedOutsizeKeyboard))
         tapRecognizer.delegate = self
         self.view.addGestureRecognizer(tapRecognizer)
     }
@@ -115,7 +115,7 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "tappedActionButton")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: #selector(NLogViewController.tappedActionButton))
         
         let realm = Realm.createLogRealm()
         self.token = realm?.addNotificationBlock({ (notification, realm) -> Void in
@@ -127,8 +127,7 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
         super.viewWillDisappear(animated)
         
         if let token = self.token {
-            let realm = Realm.createLogRealm()
-            realm?.removeNotification(token)
+            token.stop()
         }
     }
     

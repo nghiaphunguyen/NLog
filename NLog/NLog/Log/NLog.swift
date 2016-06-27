@@ -10,12 +10,13 @@ import UIKit
 
 public class NLog: NSObject {
     //MARK: Private
-    static var dateFormat = NSDateFormatter.logDateFormatter()
+    static let kDateFormat = NSDateFormatter.logDateFormatter()
+    static let kDataQueue = dispatch_queue_create("nlog_data_queue", nil)
     
     private static func log(level: Level,
         tag: String,
         _ message: String,
-        var color: UIColor?,
+        color: UIColor?,
         file: String,
         function: String,
         line: Int) {
@@ -23,7 +24,8 @@ public class NLog: NSObject {
             guard NLog.levels.contains(level) else {
                 return
             }
-            
+        
+            var color = color
             if color == nil {
                 color = NLog.levelColors[level] ?? UIColor.whiteColor()
             }
@@ -62,11 +64,12 @@ public class NLog: NSObject {
             if stackTrace.count > 2 {
                 stackTraceString = Array(stackTrace[2...min(stackTrace.count, NLog.maxStackTrace)]).toString
             }
-            
+        
             let logEntry = NLogEntry(level: level.rawValue, message: message, tag: tag, color: color?.hex ?? 0,
-                file: file, function: function, line: line, stackTrace: stackTraceString)
-            logEntry.save()
-            
+                                 file: file, function: function, line: line, stackTrace: stackTraceString)
+            dispatch_async(NLog.kDataQueue) {
+                logEntry.save()
+            }
             
             if let color = color where NLog.enableXcodeColors {
                 NLog.printLog(logEntry.shortDesc, withColor: color)
@@ -171,10 +174,10 @@ public class NLog: NSObject {
     public static func getLogString(level level: Level? = nil,
         tag: String = "",
         filter: String = "",
-        var limit: Int? = nil,
+        limit: Int? = nil,
         stackTrace: Bool = false) -> String {
             var mes = ""
-            
+            var limit = limit
             let levelString = level == nil ? "" : level!.rawValue
             
             guard let allLogs = NLogEntry.getAll()?
@@ -202,9 +205,9 @@ public class NLog: NSObject {
         message: String,
         _ tag: String = "",
         color: UIColor? = nil,
-        file: String = __FILE__,
-        function: String = __FUNCTION__,
-        line: Int = __LINE__) {
+        file: String = #file,
+        function: String = #function,
+        line: Int = #line) {
             NLog.log(.Debug,
                 tag: tag,
                 message,
@@ -218,9 +221,9 @@ public class NLog: NSObject {
         message: String,
         _ tag: String = "",
         color: UIColor? = nil,
-        file: String = __FILE__,
-        function: String = __FUNCTION__,
-        line: Int = __LINE__) {
+        file: String = #file,
+        function: String = #function,
+        line: Int = #line) {
             NLog.log(.Info,
                 tag: tag,
                 message,
@@ -234,9 +237,9 @@ public class NLog: NSObject {
         message: String,
         _ tag: String = "",
         color: UIColor? = nil,
-        file: String = __FILE__,
-        function: String = __FUNCTION__,
-        line: Int = __LINE__) {
+        file: String = #file,
+        function: String = #function,
+        line: Int = #line) {
             NLog.log(.Warning,
                 tag: tag,
                 message,
@@ -250,9 +253,9 @@ public class NLog: NSObject {
         message: String,
         _ tag: String = "",
         color: UIColor? = nil,
-        file: String = __FILE__,
-        function: String = __FUNCTION__,
-        line: Int = __LINE__) {
+        file: String = #file,
+        function: String = #function,
+        line: Int = #line) {
             NLog.log(.Error,
                 tag: tag,
                 message,
@@ -266,9 +269,9 @@ public class NLog: NSObject {
         message: String,
         _ tag: String = "",
         color: UIColor? = nil,
-        file: String = __FILE__,
-        function: String = __FUNCTION__,
-        line: Int = __LINE__) {
+        file: String = #file,
+        function: String = #function,
+        line: Int = #line) {
             NLog.log(.Server,
                 tag: tag,
                 message,

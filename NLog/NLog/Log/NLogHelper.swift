@@ -36,7 +36,7 @@ extension String {
         let startIndex = self.startIndex.advancedBy(min(self.characters.count, r.startIndex))
         let endIndex = self.startIndex.advancedBy(min(self.characters.count, r.endIndex))
         
-        return self[Range(start: startIndex, end: endIndex)]
+        return self[startIndex...endIndex]
     }
 }
 
@@ -52,16 +52,16 @@ extension Array {
 }
 
 let logConfig: Realm.Configuration? = {
-    guard let path = Realm.Configuration().path else {
+    guard let url = Realm.Configuration().fileURL else {
         return nil
     }
     
-    guard let logPath = NSURL.fileURLWithPath(path).URLByDeletingLastPathComponent?
-        .URLByAppendingPathComponent("log.realm").path else {
+    guard let logUrl = url.URLByDeletingLastPathComponent?
+        .URLByAppendingPathComponent("log.realm") else {
             return nil
     }
     
-    let config = Realm.Configuration(path: logPath, schemaVersion: 1)
+    let config = Realm.Configuration(fileURL: logUrl, schemaVersion: 1)
     return config
 }()
 

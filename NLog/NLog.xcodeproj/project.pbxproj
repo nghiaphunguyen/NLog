@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4201DC791C6D95F000B7FFFE /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4201DC771C6D95F000B7FFFE /* Realm.framework */; };
-		4201DC7A1C6D95F000B7FFFE /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4201DC781C6D95F000B7FFFE /* RealmSwift.framework */; };
 		4201DC7C1C6D9F1300B7FFFE /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4201DC7B1C6D9F1300B7FFFE /* UIColor+Extension.swift */; };
 		4201DC7E1C6DA0D100B7FFFE /* NLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4201DC7D1C6DA0D100B7FFFE /* NLogViewController.swift */; };
 		4205B0171C75E86400E985FB /* NLogDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4205B0161C75E86400E985FB /* NLogDetailViewController.swift */; };
@@ -22,8 +20,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4201DC771C6D95F000B7FFFE /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../../Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
-		4201DC781C6D95F000B7FFFE /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../../Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		4201DC7B1C6D9F1300B7FFFE /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		4201DC7D1C6DA0D100B7FFFE /* NLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLogViewController.swift; sourceTree = "<group>"; };
 		4205B0161C75E86400E985FB /* NLogDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLogDetailViewController.swift; sourceTree = "<group>"; };
@@ -43,8 +39,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4201DC791C6D95F000B7FFFE /* Realm.framework in Frameworks */,
-				4201DC7A1C6D95F000B7FFFE /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,8 +48,6 @@
 		4201DC761C6D95E200B7FFFE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4201DC771C6D95F000B7FFFE /* Realm.framework */,
-				4201DC781C6D95F000B7FFFE /* RealmSwift.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

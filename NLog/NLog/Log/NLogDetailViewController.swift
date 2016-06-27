@@ -22,7 +22,7 @@ class NLogDetailViewController: UIViewController {
         button.backgroundColor = UIColor.whiteColor()
         button.setTitle("Close", forState: UIControlState.Normal)
         button.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        button.addTarget(self, action: "tappedCloseButton", forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(NLogDetailViewController.tappedCloseButton), forControlEvents: .TouchUpInside)
         return button
     }()
     
@@ -50,7 +50,7 @@ class NLogDetailViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: self, action: "tappedSaveButton")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: self, action: #selector(NLogDetailViewController.tappedSaveButton))
     }
     
     func tappedSaveButton() {
