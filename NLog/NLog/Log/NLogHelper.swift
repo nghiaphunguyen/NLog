@@ -36,7 +36,7 @@ extension String {
         let startIndex = self.startIndex.advancedBy(min(self.characters.count, r.startIndex))
         let endIndex = self.startIndex.advancedBy(min(self.characters.count, r.endIndex))
         
-        return self[startIndex...endIndex]
+        return self[startIndex..<endIndex]
     }
 }
 
