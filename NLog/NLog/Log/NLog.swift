@@ -67,14 +67,16 @@ public class NLog: NSObject {
         
             let logEntry = NLogEntry(level: level.rawValue, message: message, tag: tag, color: color?.hex ?? 0,
                                  file: file, function: function, line: line, stackTrace: stackTraceString)
+        
+            let printedString = logEntry.shortDesc
             dispatch_async(NLog.kDataQueue) {
                 logEntry.save()
             }
             
             if let color = color where NLog.enableXcodeColors {
-                NLog.printLog(logEntry.shortDesc, withColor: color)
+                NLog.printLog(printedString, withColor: color)
             } else {
-                print(logEntry.shortDesc)
+                print(printedString)
             }
             
     }
