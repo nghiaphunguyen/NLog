@@ -20,7 +20,7 @@ class NLogEntry: Object {
     dynamic var stackTrace: String = ""
     dynamic var line: Int = 0
     
-    private var desc: String {
+    fileprivate var desc: String {
         var displayMessage = ""
         
         if let lv = NLog.Level(rawValue: level) {
@@ -44,9 +44,9 @@ class NLogEntry: Object {
         return displayMessage
     }
     
-    private func descLog(desc: String) -> String {
-        let currentThreadNumber = NSThread.currentThread().number
-        var log = NLog.kDateFormat.stringFromDate(NSDate(timeIntervalSince1970: self.createdAt))
+    fileprivate func descLog(_ desc: String) -> String {
+        let currentThreadNumber = Thread.current.number
+        var log = NLog.kDateFormat.string(from: Date(timeIntervalSince1970: self.createdAt))
         log += " \(AppName)[\(currentThreadNumber == 1 ? "MainThread" : "\(currentThreadNumber)")] "
         
         return "\(log) \((file as NSString).lastPathComponent) - \(line) - \(function)\n\(desc)\n"
@@ -66,7 +66,7 @@ class NLogEntry: Object {
     
     convenience init(level: String, message: String, tag: String, color: Int, file: String, function: String, line: Int, stackTrace: String) {
         self.init()
-        let now = NSDate().timeIntervalSince1970
+        let now = Date().timeIntervalSince1970
         self.id = "\(now)"
         self.level = level
         self.createdAt = now
@@ -102,10 +102,10 @@ class NLogEntry: Object {
             return nil
         }
         
-        return realm.objects(NLogEntry).sorted("createdAt", ascending: false)
+        return realm.objects(NLogEntry).sorted(byProperty: "createdAt", ascending: false)
     }
     
-    static func deleteBeforeDate(timestamp: Double) {
+    static func deleteBeforeDate(_ timestamp: Double) {
         guard let realm = Realm.createLogRealm() else {
             return
         }

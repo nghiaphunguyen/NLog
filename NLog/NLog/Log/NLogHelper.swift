@@ -10,31 +10,31 @@ import Foundation
 import RealmSwift
 import UIKit
 
-var AppName = (NSBundle.mainBundle().infoDictionary?["CFBundleName"] as? String) ?? ""
+var AppName = (Bundle.main.infoDictionary?["CFBundleName"] as? String) ?? ""
 
-extension NSDateFormatter {
-    static func logDateFormatter() -> NSDateFormatter {
-        let dateFormatter = NSDateFormatter()
+extension DateFormatter {
+    static func logDateFormatter() -> DateFormatter {
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy HH:mm:ss.SSS"
         return dateFormatter
     }
 }
 
-extension NSThread {
+extension Thread {
     var number: Int {
-        let strings = self.description.componentsSeparatedByString("number = ")
+        let strings = self.description.components(separatedBy: "number = ")
         if strings.count < 2 {
             return 0
         }
         
-        return Int(strings[1].componentsSeparatedByString(",").first ?? "") ?? 0
+        return Int(strings[1].components(separatedBy: ",").first ?? "") ?? 0
     }
 }
 
 extension String {
     subscript(r: Range<Int>) -> String {
-        let startIndex = self.startIndex.advancedBy(min(self.characters.count, r.startIndex))
-        let endIndex = self.startIndex.advancedBy(min(self.characters.count, r.endIndex))
+        let startIndex = self.characters.index(self.startIndex, offsetBy: min(self.characters.count, r.lowerBound))
+        let endIndex = self.characters.index(self.startIndex, offsetBy: min(self.characters.count, r.upperBound))
         
         return self[startIndex..<endIndex]
     }
@@ -56,10 +56,8 @@ let logConfig: Realm.Configuration? = {
         return nil
     }
     
-    guard let logUrl = url.URLByDeletingLastPathComponent?
-        .URLByAppendingPathComponent("log.realm") else {
-            return nil
-    }
+    let logUrl = url.deletingLastPathComponent()
+        .appendingPathComponent("log.realm")
     
     let config = Realm.Configuration(fileURL: logUrl, schemaVersion: 1)
     return config

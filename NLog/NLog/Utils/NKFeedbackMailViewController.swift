@@ -9,12 +9,12 @@
 import MessageUI
 import UIKit
 
-public class NKFeedBackMailViewController: MFMailComposeViewController, MFMailComposeViewControllerDelegate {
+open class NKFeedBackMailViewController: MFMailComposeViewController, MFMailComposeViewControllerDelegate {
     
-    public static var userEmail: String?
-    public static var userId: String?
+    open static var userEmail: String?
+    open static var userId: String?
     
-    public func setup(logString: String) -> NKFeedBackMailViewController {
+    open func setup(_ logString: String) -> NKFeedBackMailViewController {
         self.mailComposeDelegate = self
         
         let userEmailHtlmString = NKFeedBackMailViewController.userEmail != nil ? "</br>User emai: \(NKFeedBackMailViewController.userEmail!)" : ""
@@ -25,49 +25,49 @@ public class NKFeedBackMailViewController: MFMailComposeViewController, MFMailCo
         
         self.setMessageBody(body, isHTML: true)
         
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy HH:mm:ss"
-        let dateString = dateFormatter.stringFromDate(NSDate())
+        let dateString = dateFormatter.string(from: Date())
         
-        if let window = UIApplication.sharedApplication().windows.first , screenShotData = UIImagePNGRepresentation(window.nk_snapshot()) {
+        if let window = UIApplication.shared.windows.first , let screenShotData = UIImagePNGRepresentation(window.nk_snapshot()) {
             self.addAttachmentData(screenShotData, mimeType: "image/png", fileName: "screenshot-\(NKAppInfo.Name)-\(dateString).png")
         }
         
-        if let data = logString.dataUsingEncoding(NSUTF8StringEncoding) {
+        if let data = logString.data(using: String.Encoding.utf8) {
             self.addAttachmentData(data, mimeType: "text/plain", fileName: "log-\(NKAppInfo.Name)-\(dateString).txt")
         }
         
         return self
     }
     
-    public func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    open func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
 extension UIView {
     func nk_snapshot() -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(self.frame.size, false, UIScreen.mainScreen().scale)
+        UIGraphicsBeginImageContextWithOptions(self.frame.size, false, UIScreen.main.scale)
         
         let context = UIGraphicsGetCurrentContext()
-        self.layer.renderInContext(context!)
+        self.layer.render(in: context!)
         
         let image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         
-        return image
+        return image!
     }
 
 }
 
 struct NKAppInfo {
-    static let Name = (NSBundle.mainBundle().infoDictionary?["CFBundleName"] as? String) ?? ""
-    static let Build = (NSBundle.mainBundle().infoDictionary?["CFBundleVersion"] as? Int) ?? 0
-    static let Version = (NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String) ?? "0.0"
-    static let Identifier = (NSBundle.mainBundle().infoDictionary?["CFBundleIdentifier"] as? String) ?? ""
+    static let Name = (Bundle.main.infoDictionary?["CFBundleName"] as? String) ?? ""
+    static let Build = (Bundle.main.infoDictionary?["CFBundleVersion"] as? Int) ?? 0
+    static let Version = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? "0.0"
+    static let Identifier = (Bundle.main.infoDictionary?["CFBundleIdentifier"] as? String) ?? ""
 }
 
 struct NKDeviceInfo {
-    static let Version = UIDevice.currentDevice().systemVersion
-    static let Model = UIDevice.currentDevice().model
+    static let Version = UIDevice.current.systemVersion
+    static let Model = UIDevice.current.model
 }
