@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
   s.name         = "NLog"
-  s.version      = "3.0.0"
+  s.version      = "3.0.1"
   s.summary      = "NLog is wrapper of print function"
-  s.homepage     = "http://knacker.com"
+  s.homepage     = "http://cornerteam.com"
   s.license      = "MIT"
   s.author       = "Nghia Nguyen"
   s.platform     = :ios, "8.0"
