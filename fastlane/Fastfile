@@ -1,0 +1,29 @@
+lane :release do
+  ensure_git_branch
+
+  bumpType = prompt(text: "What kind of release is this? (major/minor/patch/custom)".green, boolean: false, ci_input: "")
+  case bumpType
+  when "major", "minor", "patch"
+    version_bump_podspec(bump_type: bumpType)
+  when "custom"
+  newVersion = prompt(text: "What is the new custom version number?".green, boolean: false, ci_input: "")
+  version_bump_podspec(version_number: newVersion)
+  else
+    raise "Invalid release type: #{bumpType}".red
+  end
+
+  version = version_get_podspec()
+  git_commit(path: ".", message: "Bump to #{version}")
+  changelog = changelog_from_git_commits
+  github_release = set_github_release(
+    repository_name: ENV['REPO'],
+    api_token: ENV['TOKEN'],
+    name: version,
+    tag_name: version,
+    description: changelog,
+    commitish: "master"
+  )
+  sh("git fetch --tags")
+  push_to_git_remote(force: false, tags: true)
+  pod_push(allow_warnings: true, verbose: true)
+end

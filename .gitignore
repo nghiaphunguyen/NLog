@@ -48,6 +48,7 @@ DerivedData
 
 **/fastlane/report.xml
 **/fastlane/screenshots
+**/fastlane/.env*
 
 /Build
 /Release
