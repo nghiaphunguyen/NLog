@@ -12,7 +12,7 @@ lane :release do
 
   version = version_get_podspec()
   git_commit(path: ["./"], message: "Bump to #{version}")
-  sh("git fetch --tags")
+  add_git_tag(tag: "#{version}")
   push_to_git_remote(force: false, tags: true)
   pod_push(allow_warnings: true, verbose: true)
 
