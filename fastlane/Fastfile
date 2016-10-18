@@ -14,16 +14,16 @@ lane :release do
 
   version = version_get_podspec()
   git_commit(path: ".", message: "Bump to #{version}")
-  changelog = changelog_from_git_commits
-  github_release = set_github_release(
-    repository_name: ENV['REPO'],
-    api_token: ENV['TOKEN'],
-    name: version,
-    tag_name: version,
-    description: changelog,
-    commitish: "master"
-  )
   sh("git fetch --tags")
   push_to_git_remote(force: false, tags: true)
+  # changelog = changelog_from_git_commits
+  # github_release = set_github_release(
+  #   repository_name: ENV['REPO'],
+  #   api_token: ENV['TOKEN'],
+  #   name: version,
+  #   tag_name: version,
+  #   description: changelog,
+  #   commitish: "master"
+  # )
   pod_push(allow_warnings: true, verbose: true)
 end
