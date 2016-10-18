@@ -1,6 +1,4 @@
 lane :release do
-  ensure_git_branch
-  
   bumpType = prompt(text: "What kind of release is this? (major/minor/patch/custom)".green, boolean: false, ci_input: "")
   case bumpType
   when "major", "minor", "patch"
