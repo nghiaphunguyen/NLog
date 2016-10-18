@@ -1,0 +1,450 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1865F1801DB61E2B009338E1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1865F1721DB61E2B009338E1 /* Info.plist */; };
+		1865F1811DB61E2B009338E1 /* NLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865F1741DB61E2B009338E1 /* NLog.swift */; };
+		1865F1821DB61E2B009338E1 /* NLogDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865F1751DB61E2B009338E1 /* NLogDetailViewController.swift */; };
+		1865F1831DB61E2B009338E1 /* NLogEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865F1761DB61E2B009338E1 /* NLogEntry.swift */; };
+		1865F1841DB61E2B009338E1 /* NLogHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865F1771DB61E2B009338E1 /* NLogHelper.swift */; };
+		1865F1851DB61E2B009338E1 /* NLogTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865F1781DB61E2B009338E1 /* NLogTag.swift */; };
+		1865F1861DB61E2B009338E1 /* NLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865F1791DB61E2B009338E1 /* NLogViewController.swift */; };
+		1865F1871DB61E2B009338E1 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865F17D1DB61E2B009338E1 /* UIColor+Extension.swift */; };
+		1865F1881DB61E2B009338E1 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865F17E1DB61E2B009338E1 /* UIView+AutoLayout.swift */; };
+		1865F1891DB61E2B009338E1 /* NKFeedbackMailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865F17F1DB61E2B009338E1 /* NKFeedbackMailViewController.swift */; };
+		1883AD2E1DB61DFC00A6F387 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883AD2D1DB61DFC00A6F387 /* AppDelegate.swift */; };
+		1883AD301DB61DFC00A6F387 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883AD2F1DB61DFC00A6F387 /* ViewController.swift */; };
+		1883AD331DB61DFC00A6F387 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1883AD311DB61DFC00A6F387 /* Main.storyboard */; };
+		1883AD351DB61DFC00A6F387 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1883AD341DB61DFC00A6F387 /* Assets.xcassets */; };
+		1883AD381DB61DFC00A6F387 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1883AD361DB61DFC00A6F387 /* LaunchScreen.storyboard */; };
+		521FFACE6665A21487A4A67C /* Pods_NLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5726F1F69476857F3BE68199 /* Pods_NLog.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1865F1721DB61E2B009338E1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1865F1741DB61E2B009338E1 /* NLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLog.swift; sourceTree = "<group>"; };
+		1865F1751DB61E2B009338E1 /* NLogDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLogDetailViewController.swift; sourceTree = "<group>"; };
+		1865F1761DB61E2B009338E1 /* NLogEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLogEntry.swift; sourceTree = "<group>"; };
+		1865F1771DB61E2B009338E1 /* NLogHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLogHelper.swift; sourceTree = "<group>"; };
+		1865F1781DB61E2B009338E1 /* NLogTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLogTag.swift; sourceTree = "<group>"; };
+		1865F1791DB61E2B009338E1 /* NLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLogViewController.swift; sourceTree = "<group>"; };
+		1865F17A1DB61E2B009338E1 /* NLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLog.h; sourceTree = "<group>"; };
+		1865F17D1DB61E2B009338E1 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		1865F17E1DB61E2B009338E1 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
+		1865F17F1DB61E2B009338E1 /* NKFeedbackMailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKFeedbackMailViewController.swift; sourceTree = "<group>"; };
+		1883AD2A1DB61DFC00A6F387 /* NLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1883AD2D1DB61DFC00A6F387 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1883AD2F1DB61DFC00A6F387 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1883AD321DB61DFC00A6F387 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1883AD341DB61DFC00A6F387 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1883AD371DB61DFC00A6F387 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1883AD391DB61DFC00A6F387 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5726F1F69476857F3BE68199 /* Pods_NLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		608A8E8D36E89859181C6702 /* Pods-NLog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NLog.release.xcconfig"; path = "Pods/Target Support Files/Pods-NLog/Pods-NLog.release.xcconfig"; sourceTree = "<group>"; };
+		F05741A8A3968606AAE0BD22 /* Pods-NLog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NLog.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NLog/Pods-NLog.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1883AD271DB61DFC00A6F387 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				521FFACE6665A21487A4A67C /* Pods_NLog.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1865F1711DB61E2B009338E1 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				1865F1721DB61E2B009338E1 /* Info.plist */,
+				1865F1731DB61E2B009338E1 /* Log */,
+				1865F17A1DB61E2B009338E1 /* NLog.h */,
+				1865F17B1DB61E2B009338E1 /* Utils */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		1865F1731DB61E2B009338E1 /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				1865F1741DB61E2B009338E1 /* NLog.swift */,
+				1865F1751DB61E2B009338E1 /* NLogDetailViewController.swift */,
+				1865F1761DB61E2B009338E1 /* NLogEntry.swift */,
+				1865F1771DB61E2B009338E1 /* NLogHelper.swift */,
+				1865F1781DB61E2B009338E1 /* NLogTag.swift */,
+				1865F1791DB61E2B009338E1 /* NLogViewController.swift */,
+			);
+			path = Log;
+			sourceTree = "<group>";
+		};
+		1865F17B1DB61E2B009338E1 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1865F17C1DB61E2B009338E1 /* Extension */,
+				1865F17F1DB61E2B009338E1 /* NKFeedbackMailViewController.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		1865F17C1DB61E2B009338E1 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1865F17D1DB61E2B009338E1 /* UIColor+Extension.swift */,
+				1865F17E1DB61E2B009338E1 /* UIView+AutoLayout.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		1883AD211DB61DFC00A6F387 = {
+			isa = PBXGroup;
+			children = (
+				1883AD2C1DB61DFC00A6F387 /* NLog */,
+				1883AD2B1DB61DFC00A6F387 /* Products */,
+				53C4628B768265DB274C0777 /* Pods */,
+				4EB9C1B08301189904FF132E /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1883AD2B1DB61DFC00A6F387 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1883AD2A1DB61DFC00A6F387 /* NLog.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1883AD2C1DB61DFC00A6F387 /* NLog */ = {
+			isa = PBXGroup;
+			children = (
+				1865F1711DB61E2B009338E1 /* Source */,
+				1883AD2D1DB61DFC00A6F387 /* AppDelegate.swift */,
+				1883AD2F1DB61DFC00A6F387 /* ViewController.swift */,
+				1883AD311DB61DFC00A6F387 /* Main.storyboard */,
+				1883AD341DB61DFC00A6F387 /* Assets.xcassets */,
+				1883AD361DB61DFC00A6F387 /* LaunchScreen.storyboard */,
+				1883AD391DB61DFC00A6F387 /* Info.plist */,
+			);
+			path = NLog;
+			sourceTree = "<group>";
+		};
+		4EB9C1B08301189904FF132E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5726F1F69476857F3BE68199 /* Pods_NLog.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		53C4628B768265DB274C0777 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F05741A8A3968606AAE0BD22 /* Pods-NLog.debug.xcconfig */,
+				608A8E8D36E89859181C6702 /* Pods-NLog.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1883AD291DB61DFC00A6F387 /* NLog */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1883AD3C1DB61DFC00A6F387 /* Build configuration list for PBXNativeTarget "NLog" */;
+			buildPhases = (
+				2A7118CCE272F267F316D2DC /* [CP] Check Pods Manifest.lock */,
+				1883AD261DB61DFC00A6F387 /* Sources */,
+				1883AD271DB61DFC00A6F387 /* Frameworks */,
+				1883AD281DB61DFC00A6F387 /* Resources */,
+				330D3DBF97E88235C1D0137B /* [CP] Embed Pods Frameworks */,
+				9FF62D6DFEC63EC8B5BEE90B /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NLog;
+			productName = NLog;
+			productReference = 1883AD2A1DB61DFC00A6F387 /* NLog.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1883AD221DB61DFC00A6F387 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Nghia Nguyen";
+				TargetAttributes = {
+					1883AD291DB61DFC00A6F387 = {
+						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
+					};
+				};
+			};
+			buildConfigurationList = 1883AD251DB61DFC00A6F387 /* Build configuration list for PBXProject "NLog" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1883AD211DB61DFC00A6F387;
+			productRefGroup = 1883AD2B1DB61DFC00A6F387 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1883AD291DB61DFC00A6F387 /* NLog */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1883AD281DB61DFC00A6F387 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1865F1801DB61E2B009338E1 /* Info.plist in Resources */,
+				1883AD381DB61DFC00A6F387 /* LaunchScreen.storyboard in Resources */,
+				1883AD351DB61DFC00A6F387 /* Assets.xcassets in Resources */,
+				1883AD331DB61DFC00A6F387 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2A7118CCE272F267F316D2DC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		330D3DBF97E88235C1D0137B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NLog/Pods-NLog-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9FF62D6DFEC63EC8B5BEE90B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NLog/Pods-NLog-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1883AD261DB61DFC00A6F387 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1883AD301DB61DFC00A6F387 /* ViewController.swift in Sources */,
+				1883AD2E1DB61DFC00A6F387 /* AppDelegate.swift in Sources */,
+				1865F1861DB61E2B009338E1 /* NLogViewController.swift in Sources */,
+				1865F1871DB61E2B009338E1 /* UIColor+Extension.swift in Sources */,
+				1865F1831DB61E2B009338E1 /* NLogEntry.swift in Sources */,
+				1865F1881DB61E2B009338E1 /* UIView+AutoLayout.swift in Sources */,
+				1865F1851DB61E2B009338E1 /* NLogTag.swift in Sources */,
+				1865F1841DB61E2B009338E1 /* NLogHelper.swift in Sources */,
+				1865F1811DB61E2B009338E1 /* NLog.swift in Sources */,
+				1865F1891DB61E2B009338E1 /* NKFeedbackMailViewController.swift in Sources */,
+				1865F1821DB61E2B009338E1 /* NLogDetailViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1883AD311DB61DFC00A6F387 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1883AD321DB61DFC00A6F387 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1883AD361DB61DFC00A6F387 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1883AD371DB61DFC00A6F387 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1883AD3A1DB61DFC00A6F387 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1883AD3B1DB61DFC00A6F387 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1883AD3D1DB61DFC00A6F387 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F05741A8A3968606AAE0BD22 /* Pods-NLog.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = NLog/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cornerteam.NLog;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
+			};
+			name = Debug;
+		};
+		1883AD3E1DB61DFC00A6F387 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 608A8E8D36E89859181C6702 /* Pods-NLog.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = NLog/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cornerteam.NLog;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1883AD251DB61DFC00A6F387 /* Build configuration list for PBXProject "NLog" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1883AD3A1DB61DFC00A6F387 /* Debug */,
+				1883AD3B1DB61DFC00A6F387 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1883AD3C1DB61DFC00A6F387 /* Build configuration list for PBXNativeTarget "NLog" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1883AD3D1DB61DFC00A6F387 /* Debug */,
+				1883AD3E1DB61DFC00A6F387 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1883AD221DB61DFC00A6F387 /* Project object */;
+}

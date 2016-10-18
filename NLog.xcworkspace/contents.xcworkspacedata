@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:NLogSample/NLogSample.xcodeproj">
+      location = "group:NLog.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:NLog/NLog.xcodeproj">
+      location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

@@ -55,7 +55,7 @@ extension UIView {
         let image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         
-        return image
+        return image!
     }
 
 }
