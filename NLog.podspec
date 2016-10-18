@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "NLog"
-  s.version      = "1.1.4"
+  s.version      = "1.1.5"
   s.summary      = "NLog is wrapper of print function"
   s.homepage     = "http://knacker.com"
   s.license      = "MIT"
