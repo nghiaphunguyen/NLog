@@ -3,9 +3,11 @@
 
 *Inspired by CocoalumberjackLog and RGA Log.*
 
-# CHANGE LOG **v1.2.21
+# CHANGE LOG 
 
-abc
+**v1.2.22 - 19/10/2016
+
+asdfasdf
 
 
 
