@@ -15,8 +15,8 @@ lane :release do
   changelog = prompt(text: "Please provide release notes:".green, boolean: false, ci_input: "", multi_line_end_keyword: "FIN")
   af_insert_text_into_file(
     file_path: "README.md",
-    text: "## #{newVersion}\n\n#{changelog}\n\n",
-    insert_delimiter: "--- NGHIA ---"
+    text: "**v#{version} - #{Time.now.strftime('%d/%m/%Y')}\n\n#{changelog}\n\n",
+    insert_delimiter: "CHANGE LOG"
   )
 
   git_commit(path: ".", message: "Bump to #{version}")
