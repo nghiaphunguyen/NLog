@@ -3,9 +3,10 @@
 
 *Inspired by CocoalumberjackLog and RGA Log.*
 
-# CHANGE LOG **v1.2.20 - 19/10/2016
+# CHANGE LOG **v1.2.21
 
-TEST
+abc
+
 
 
 **v1.0.9 - 03/20/2016**
