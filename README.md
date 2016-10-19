@@ -3,7 +3,11 @@
 
 *Inspired by CocoalumberjackLog and RGA Log.*
 
-# CHANGE LOG
+# CHANGE LOG **v1.2.20 - 19/10/2016
+
+TEST
+
+
 **v1.0.9 - 03/20/2016**
 
 1. Support [XcodeColors](https://github.com/robbiehanson/XcodeColors) plugin that make console log colorful.

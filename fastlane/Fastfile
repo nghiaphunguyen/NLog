@@ -16,7 +16,7 @@ lane :release do
   af_insert_text_into_file(
     file_path: "README.md",
     text: "**v#{version} - #{Time.now.strftime('%d/%m/%Y')}\n\n#{changelog}\n\n",
-    insert_delimiter: "CHANGE LOG"
+    insert_delimiter: "# CHANGE LOG"
   )
 
   git_commit(path: ".", message: "Bump to #{version}")
