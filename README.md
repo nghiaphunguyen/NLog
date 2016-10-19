@@ -4,10 +4,15 @@
 *Inspired by CocoalumberjackLog and RGA Log.*
 
 # CHANGE LOG
+--- NGHIA --- ## 
+
+ok roi nhe
+
+
 
 **v1.0.9 - 03/20/2016**
 
-1. Support [XcodeColors](https://github.com/robbiehanson/XcodeColors) plugin that make console log colorful. 
+1. Support [XcodeColors](https://github.com/robbiehanson/XcodeColors) plugin that make console log colorful.
 2. Add stack trace option.
 3. Add 2 static property userEmail and userId to NKFeedbackMailViewController.
 
