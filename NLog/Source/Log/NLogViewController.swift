@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-public class NLogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UIGestureRecognizerDelegate{
+open class NLogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UIGestureRecognizerDelegate{
     static let kCellIdentifier = "LogCell"
     
     var logEntrys: Results<NLogEntry>?
@@ -46,7 +46,7 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
        let tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.backgroundColor = UIColor.blackColor()
+        tableView.backgroundColor = UIColor.black
         return tableView
     }()
     
@@ -59,11 +59,11 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
     
     lazy var logLevelTextField: UITextField = {
         let textField = UITextField()
-        textField.backgroundColor = UIColor.blackColor()
+        textField.backgroundColor = UIColor.black
         textField.inputView = self.logLevelPicker
         textField.text = self.logLevels.first
-        textField.textColor = UIColor.whiteColor()
-        textField.textAlignment = .Center
+        textField.textColor = UIColor.white
+        textField.textAlignment = .center
         return textField
     }()
     
@@ -76,25 +76,25 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
     
     lazy var tagTextField: UITextField = {
         let textField = UITextField()
-        textField.backgroundColor = UIColor.blackColor()
+        textField.backgroundColor = UIColor.black
         textField.inputView = self.tagPicker
         textField.text = self.tags.first
-        textField.textColor = UIColor.whiteColor()
-        textField.textAlignment = .Center
+        textField.textColor = UIColor.white
+        textField.textAlignment = .center
         return textField
     }()
     
     lazy var searchTextField: UITextField = {
        let textField = UITextField()
-        textField.backgroundColor = UIColor.whiteColor()
+        textField.backgroundColor = UIColor.white
         textField.placeholder = "Search..."
-        textField.clearButtonMode = .WhileEditing
-        textField.addTarget(self, action: #selector(NLogViewController.searchTextFieldChangedValue), forControlEvents: .EditingChanged)
+        textField.clearButtonMode = .whileEditing
+        textField.addTarget(self, action: #selector(NLogViewController.searchTextFieldChangedValue), for: .editingChanged)
         return textField
     }()
     
     //MARK: Life cycle
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setupView()
@@ -112,10 +112,10 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
         self.view.endEditing(true)
     }
     
-    public override func viewWillAppear(animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: #selector(NLogViewController.tappedActionButton))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.action, target: self, action: #selector(NLogViewController.tappedActionButton))
         
         let realm = Realm.createLogRealm()
         self.token = realm?.addNotificationBlock({ (notification, realm) -> Void in
@@ -123,7 +123,7 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
         })
     }
     
-    public override func viewWillDisappear(animated: Bool) {
+    open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         if let token = self.token {
@@ -133,56 +133,56 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
     
     //MARK: private functions
     func tappedActionButton() {
-        let sendFeedbackAlertAction = UIAlertAction(title: "Send feedback", style: UIAlertActionStyle.Default) { (action) -> Void in
+        let sendFeedbackAlertAction = UIAlertAction(title: "Send feedback", style: UIAlertActionStyle.default) { (action) -> Void in
             self.sendFeedback()
         }
         
-        let clearAlertAction = UIAlertAction(title: "Clear logs", style: UIAlertActionStyle.Destructive) { (action) -> Void in
+        let clearAlertAction = UIAlertAction(title: "Clear logs", style: UIAlertActionStyle.destructive) { (action) -> Void in
             self.clearLogs()
         }
         
-        let cancelAlertAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+        let cancelAlertAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
         
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertController.addAction(sendFeedbackAlertAction)
         alertController.addAction(clearAlertAction)
         alertController.addAction(cancelAlertAction)
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     func clearLogs() {
-        NLogEntry.deleteBeforeDate(NSDate().timeIntervalSince1970)
+        NLogEntry.deleteBeforeDate(Date().timeIntervalSince1970)
         self.tableView.reloadData()
     }
     
     func sendFeedback() {
         
-        let sendFeedbackBlock: (stackTrace: Bool) -> Void = { (stackTrace) in
+        let sendFeedbackBlock: (_ stackTrace: Bool) -> Void = { (stackTrace) in
             let logString = NLog.getLogString(level: NLog.Level(rawValue: self.currentLevel), tag: self.currentTag, filter: self.searchTextField.text ?? "", limit: nil, stackTrace: stackTrace)
             
-            self.presentViewController(NKFeedBackMailViewController().setup(logString), animated: true, completion: nil)
+            self.present(NKFeedBackMailViewController().setup(logString), animated: true, completion: nil)
         }
         
-        let actionNonStackTrace = UIAlertAction(title: "Non Stack Trace", style: UIAlertActionStyle.Default) { (_) -> Void in
-            sendFeedbackBlock(stackTrace: false)
+        let actionNonStackTrace = UIAlertAction(title: "Non Stack Trace", style: UIAlertActionStyle.default) { (_) -> Void in
+            sendFeedbackBlock(false)
         }
         
-        let actionStackTrace = UIAlertAction(title: "With Stack Trace", style: UIAlertActionStyle.Default) { (_) -> Void in
-            sendFeedbackBlock(stackTrace: true)
+        let actionStackTrace = UIAlertAction(title: "With Stack Trace", style: UIAlertActionStyle.default) { (_) -> Void in
+            sendFeedbackBlock(true)
         }
         
-        let actionCancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+        let actionCancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
         
-        let alertViewController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        let alertViewController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         alertViewController.addAction(actionNonStackTrace)
         alertViewController.addAction(actionStackTrace)
         alertViewController.addAction(actionCancel)
-        self.presentViewController(alertViewController, animated: true, completion: nil)
+        self.present(alertViewController, animated: true, completion: nil)
     }
     
     func setupView() {
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor.white
         
         self.view.addSubview(self.searchTextField)
         self.view.addSubview(self.logLevelTextField)
@@ -190,7 +190,7 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
         self.view.addSubview(self.tableView)
         
         var alignTop = StatusBarHeight + self.navigationBarHeight
-        if self.navigationController?.navigationBar.translucent == false {
+        if self.navigationController?.navigationBar.isTranslucent == false {
             alignTop = 0
         }
         
@@ -223,21 +223,21 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     //MARK: UITableViewDataSource
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.logEntrys?.count ?? 0
     }
     
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier(self.dynamicType.kCellIdentifier)
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: type(of: self).kCellIdentifier)
         if cell == nil {
-            cell = UITableViewCell(style: .Default, reuseIdentifier: self.dynamicType.kCellIdentifier)
+            cell = UITableViewCell(style: .default, reuseIdentifier: type(of: self).kCellIdentifier)
             cell?.textLabel?.numberOfLines = 0
-            cell?.backgroundColor = UIColor.blackColor()
-            cell?.accessoryType = .DisclosureIndicator
+            cell?.backgroundColor = UIColor.black
+            cell?.accessoryType = .disclosureIndicator
         }
         
         if let logEntry = logEntrys?[indexPath.row] {
-            cell?.textLabel?.font = UIFont.systemFontOfSize(10)
+            cell?.textLabel?.font = UIFont.systemFont(ofSize: 10)
             cell?.textLabel?.text = logEntry.shortDesc
             cell?.textLabel?.textColor = UIColor(hex: logEntry.color)
         }
@@ -245,8 +245,8 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
         return cell!
     }
     
-    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
         if let logEntry = logEntrys?[indexPath.row] {
             let logDetailViewController = NLogDetailViewController()
@@ -255,18 +255,18 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
             if let navigationController = self.navigationController {
                 navigationController.pushViewController(logDetailViewController, animated: true)
             } else {
-                self.presentViewController(logDetailViewController, animated: true, completion: nil)
+                self.present(logDetailViewController, animated: true, completion: nil)
             }
             
         }
     }
     
-    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
     
     //MARK: UIPickerView
-    public func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    open func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == self.logLevelPicker {
             return self.logLevels.count
         }
@@ -274,11 +274,11 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
         return self.tags.count
     }
     
-    public func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    open func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    public func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    open func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         if pickerView == self.logLevelPicker {
             return self.logLevels[row]
@@ -287,14 +287,14 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
         return self.tags[row]
     }
     
-    public func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    open func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         if pickerView == self.logLevelPicker {
-            let value = self.logLevels[row].stringByReplacingOccurrencesOfString("|", withString: "")
+            let value = self.logLevels[row].replacingOccurrences(of: "|", with: "")
             self.currentLevel =  value == "All" ? "" : value
             self.logLevelTextField.text = self.logLevels[row]
         } else {
-            let value = self.tags[row].stringByReplacingOccurrencesOfString("#", withString: "")
+            let value = self.tags[row].replacingOccurrences(of: "#", with: "")
             self.currentTag = value == "All" ? "" : value
             self.tagTextField.text = self.tags[row]
         }
@@ -304,8 +304,8 @@ public class NLogViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     //MARK: GestureRegconizer
-    public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
-        if touch.view?.isDescendantOfView(self.tableView) == true {
+    open func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if touch.view?.isDescendant(of: self.tableView) == true {
             self.view.endEditing(true)
             return false
         }

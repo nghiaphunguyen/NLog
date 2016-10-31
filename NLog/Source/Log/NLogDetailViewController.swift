@@ -11,18 +11,18 @@ import UIKit
 class NLogDetailViewController: UIViewController {
     lazy var textView: UITextView = {
         let textView = UITextView()
-        textView.editable = false
+        textView.isEditable = false
         textView.showsHorizontalScrollIndicator = false
-        textView.backgroundColor = UIColor.blackColor()
+        textView.backgroundColor = UIColor.black
         return textView
     }()
     
     lazy var closeButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor.whiteColor()
-        button.setTitle("Close", forState: UIControlState.Normal)
-        button.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        button.addTarget(self, action: #selector(NLogDetailViewController.tappedCloseButton), forControlEvents: .TouchUpInside)
+        button.backgroundColor = UIColor.white
+        button.setTitle("Close", for: UIControlState())
+        button.setTitleColor(UIColor.black, for: UIControlState())
+        button.addTarget(self, action: #selector(NLogDetailViewController.tappedCloseButton), for: .touchUpInside)
         return button
     }()
     
@@ -30,9 +30,9 @@ class NLogDetailViewController: UIViewController {
     
     func tappedCloseButton() {
         if let navigationController = self.navigationController {
-            navigationController.popViewControllerAnimated(true)
+            navigationController.popViewController(animated: true)
         } else {
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -47,20 +47,20 @@ class NLogDetailViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: self, action: #selector(NLogDetailViewController.tappedSaveButton))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: #selector(NLogDetailViewController.tappedSaveButton))
     }
     
     func tappedSaveButton() {
         let logString = self.logEntry?.fullDescWithStackTrace ?? ""
         
-        self.presentViewController(NKFeedBackMailViewController().setup(logString), animated: true, completion: nil)
+        self.present(NKFeedBackMailViewController().setup(logString), animated: true, completion: nil)
     }
     
     func setUpView() {
-        self.view.backgroundColor = UIColor.blackColor()
+        self.view.backgroundColor = UIColor.black
         
         self.view.addSubview(self.closeButton)
         self.closeButton.nk_heightConstraint(40).nk_pinLeadingConstraintView().nk_pinBottomConstraintView().nk_pinTrailingConstraintView()

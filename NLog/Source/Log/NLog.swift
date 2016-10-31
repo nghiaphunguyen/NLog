@@ -9,12 +9,12 @@
 import UIKit
 import NLogProtocol
 
-public class NLog: NSObject, NLogProtocol {
+open class NLog: NSObject, NLogProtocol {
     //MARK: Private
-    static let kDateFormat = NSDateFormatter.logDateFormatter()
-    static let kDataQueue = dispatch_queue_create("nlog_data_queue", nil)
+    static let kDateFormat = DateFormatter.logDateFormatter()
+    static let kDataQueue = DispatchQueue(label: "nlog_data_queue", attributes: [])
     
-    private static func log(level: Level,
+    fileprivate static func log(_ level: Level,
         tag: String,
         _ message: String,
         color: UIColor?,
@@ -28,13 +28,13 @@ public class NLog: NSObject, NLogProtocol {
         
             var color = color
             if color == nil {
-                color = NLog.levelColors[level] ?? UIColor.whiteColor()
+                color = NLog.levelColors[level] ?? UIColor.white
             }
             
             if let filters = NLog.filters {
                 var check = false
                 for filter in filters {
-                    if message.containsString(filter) || tag.containsString(filter) {
+                    if message.contains(filter) || tag.contains(filter) {
                         check = true
                         break
                     }
@@ -45,21 +45,21 @@ public class NLog: NSObject, NLogProtocol {
             }
             
             if color == nil {
-                color = NLog.levelColors[level] ?? UIColor.whiteColor()
+                color = NLog.levelColors[level] ?? UIColor.white
             }
             
             if replaceNLog != nil {
-                replaceNLog?(level: level,
-                    tag: tag,
-                    message: message,
-                    color: color!,
-                    file: file,
-                    function: function,
-                    line: line)
+                replaceNLog?(level,
+                    tag,
+                    message,
+                    color!,
+                    file,
+                    function,
+                    line)
                 return
             }
             
-            let stackTrace = NSThread.callStackSymbols()
+            let stackTrace = Thread.callStackSymbols
             var stackTraceString = ""
             
             if stackTrace.count > 2 {
@@ -70,11 +70,11 @@ public class NLog: NSObject, NLogProtocol {
                                  file: file, function: function, line: line, stackTrace: stackTraceString)
         
             let printedString = logEntry.shortDesc
-            dispatch_async(NLog.kDataQueue) {
+            NLog.kDataQueue.async {
                 logEntry.save()
             }
             
-            if let color = color where NLog.enableXcodeColors {
+            if let color = color, NLog.enableXcodeColors {
                 NLog.printLog(printedString, withColor: color)
             } else {
                 print(printedString)
@@ -82,7 +82,7 @@ public class NLog: NSObject, NLogProtocol {
             
     }
     
-    private static func printLog(log: String, withColor color: UIColor) {
+    fileprivate static func printLog(_ log: String, withColor color: UIColor) {
         let rgb = color.rgb
         
         let prefix = "\u{001b}["
@@ -108,13 +108,13 @@ public class NLog: NSObject, NLogProtocol {
     }
     
     public enum DisplayType: Int {
-        case Full
-        case Short
+        case full
+        case short
     }
     
     //Turn it on if you install XcodeColors plugin
     // ses also at https://github.com/robbiehanson/XcodeColors
-    public static var enableXcodeColors: Bool {
+    open static var enableXcodeColors: Bool {
         set {
             if newValue {
                 setenv("XcodeColors", "YES", 0);
@@ -129,44 +129,44 @@ public class NLog: NSObject, NLogProtocol {
         }
     }
     
-    public static var levelColors: [Level : UIColor] = [
+    open static var levelColors: [Level : UIColor] = [
         .Info: UIColor(hex: 0x9CCC65),
         .Error: UIColor(hex: 0xEF5350),
         .Debug: UIColor(hex: 0xffffff),
         .Warning: UIColor(hex: 0xFFCA28),
         .Server: UIColor(hex: 0x29B6F6)]
     
-    public static var rollingFrequency: Double = 24 * 3600 { // 1 day
+    open static var rollingFrequency: Double = 24 * 3600 { // 1 day
         didSet {
-            NLogEntry.deleteBeforeDate(NSDate().timeIntervalSince1970 - self.rollingFrequency)
+            NLogEntry.deleteBeforeDate(Date().timeIntervalSince1970 - self.rollingFrequency)
         }
     }
     
-    public static let kDebugLevels: [Level] = [.Debug, .Info, .Error, .Warning, .Server]
-    public static let kReleaseLevels: [Level] = [.Info, .Error, .Warning]
+    open static let kDebugLevels: [Level] = [.Debug, .Info, .Error, .Warning, .Server]
+    open static let kReleaseLevels: [Level] = [.Info, .Error, .Warning]
     
-    public static var levels: [Level] = NLog.kDebugLevels
+    open static var levels: [Level] = NLog.kDebugLevels
     
-    public static var limitDisplayedCharacters = 1000
+    open static var limitDisplayedCharacters = 1000
     
-    public static var maxStackTrace = 7
+    open static var maxStackTrace = 7
     
-    public static var filters: [String]? = nil
+    open static var filters: [String]? = nil
     
-    public static var replaceNLog: ((level: Level,
-    tag: String,
-    message: String,
-    color: UIColor,
-    file: String,
-    function: String,
-    line: Int) -> Void)?
+    open static var replaceNLog: ((_ level: Level,
+    _ tag: String,
+    _ message: String,
+    _ color: UIColor,
+    _ file: String,
+    _ function: String,
+    _ line: Int) -> Void)?
     
-    public static func saveToFile(path path: String, level: Level? = nil, tag: String = "",
+    open static func saveToFile(path: String, level: Level? = nil, tag: String = "",
         filter: String = "",limit: Int? = nil, stackTrace: Bool = false) -> Bool {
             let mes = self.getLogString(level: level, tag: tag, filter: filter, limit: limit, stackTrace: stackTrace)
             
             do {
-                try mes.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding)
+                try mes.write(toFile: path, atomically: false, encoding: String.Encoding.utf8)
                 return true
             } catch _ {
                 return false
@@ -174,7 +174,7 @@ public class NLog: NSObject, NLogProtocol {
             
     }
     
-    public static func getLogString(level level: Level? = nil,
+    open static func getLogString(level: Level? = nil,
         tag: String = "",
         filter: String = "",
         limit: Int? = nil,
@@ -204,8 +204,8 @@ public class NLog: NSObject, NLogProtocol {
             return mes
     }
     
-    public static func debug(
-        message: String,
+    open static func debug(
+        _ message: String,
         _ tag: String = "",
         color: UIColor? = nil,
         file: String = #file,
@@ -220,8 +220,8 @@ public class NLog: NSObject, NLogProtocol {
                 line: line)
     }
     
-    public static func info(
-        message: String,
+    open static func info(
+        _ message: String,
         _ tag: String = "",
         color: UIColor? = nil,
         file: String = #file,
@@ -236,8 +236,8 @@ public class NLog: NSObject, NLogProtocol {
                 line: line)
     }
     
-    public static func warning(
-        message: String,
+    open static func warning(
+        _ message: String,
         _ tag: String = "",
         color: UIColor? = nil,
         file: String = #file,
@@ -252,8 +252,8 @@ public class NLog: NSObject, NLogProtocol {
                 line: line)
     }
     
-    public static func error(
-        message: String,
+    open static func error(
+        _ message: String,
         _ tag: String = "",
         color: UIColor? = nil,
         file: String = #file,
@@ -268,8 +268,8 @@ public class NLog: NSObject, NLogProtocol {
                 line: line)
     }
     
-    public static func server(
-        message: String,
+    open static func server(
+        _ message: String,
         _ tag: String = "",
         color: UIColor? = nil,
         file: String = #file,

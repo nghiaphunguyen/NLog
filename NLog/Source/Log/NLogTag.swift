@@ -21,6 +21,6 @@ class NLogTag: Object {
             return nil
         }
         
-        return realm.objects(NLogTag)
+        return realm.objects(NLogTag.self)
     }
 }
