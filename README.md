@@ -4,6 +4,9 @@
 *Inspired by CocoalumberjackLog and RGA Log.*
 
 # CHANGE LOG 
+**v1.2.25 - 10/31/2016
+update NLogProtocol
+ 
 **v1.2.24 - 10/31/2016
 added NLogProtocol
  
