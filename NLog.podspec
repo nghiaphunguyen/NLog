@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "NLog"
-  s.version      = "3.0.2"
+  s.version      = "3.0.3"
   s.summary      = "NLog is wrapper of print function"
   s.homepage     = "http://knacker.com"
   s.license      = "MIT"
@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.pod_target_xcconfig = { 'OTHER_LDFLAGS' => '-lObjC' }
 
-  s.dependency 'RealmSwift', '1.1.0'
-  s.dependency 'Realm', '1.1.0'
-  s.dependency 'NLogProtocol', '1.0.0'
+  s.dependency 'RealmSwift'
+  s.dependency 'Realm'
+  s.dependency 'NLogProtocol'
 end

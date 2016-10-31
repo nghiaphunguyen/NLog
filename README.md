@@ -4,6 +4,9 @@
 *Inspired by CocoalumberjackLog and RGA Log.*
 
 # CHANGE LOG 
+**v3.0.3 - 10/31/2016
+no comment
+ 
 **v3.0.2 - 10/31/2016
 update syntax to swift 3
  
