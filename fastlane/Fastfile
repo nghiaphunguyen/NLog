@@ -11,30 +11,20 @@ lane :release do
   end
 
   version = version_get_podspec()
-<<<<<<< HEAD
-  git_commit(path: ".", message: "Bump to #{version}")
-  sh("git fetch --tags")
-=======
 
   changelog = prompt(text: "Please provide release notes:".green, boolean: false, ci_input: "", multi_line_end_keyword: "FIN")
-  af_insert_text_into_file(
-    file_path: "README.md",
-    text: "\n**v#{version} - #{Time.now.strftime('%m/%d/%Y')}\n#{changelog}\n",
-    insert_delimiter: "# CHANGE LOG"
-  )
 
   git_commit(path: ".", message: "Bump to #{version}")
   add_git_tag(tag: "#{version}")
->>>>>>> feature/swift2.3
   push_to_git_remote(force: false, tags: true)
-  # changelog = changelog_from_git_commits
-  # github_release = set_github_release(
-  #   repository_name: ENV['REPO'],
-  #   api_token: ENV['TOKEN'],
-  #   name: version,
-  #   tag_name: version,
-  #   description: changelog,
-  #   commitish: "master"
-  # )
   pod_push(allow_warnings: true, verbose: true)
+
+  github_release = set_github_release(
+    repository_name: ENV['REPO'],
+    api_token: ENV['TOKEN'],
+    name: version,
+    tag_name: version,
+    description: changelog
+  )
+
 end
