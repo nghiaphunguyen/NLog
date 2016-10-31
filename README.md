@@ -3,11 +3,29 @@
 
 *Inspired by CocoalumberjackLog and RGA Log.*
 
-# CHANGE LOG
+# CHANGE LOG 
+**v1.2.26 - 10/31/2016
+update NLogProtocol
+ 
+**v1.2.25 - 10/31/2016
+update NLogProtocol
+ 
+**v1.2.24 - 10/31/2016
+added NLogProtocol
+ 
+**v1.2.23 - 10/19/2016
+test lan 2
+
+
+**v1.2.22 - 19/10/2016
+
+asdfasdf
+
+
 
 **v1.0.9 - 03/20/2016**
 
-1. Support [XcodeColors](https://github.com/robbiehanson/XcodeColors) plugin that make console log colorful. 
+1. Support [XcodeColors](https://github.com/robbiehanson/XcodeColors) plugin that make console log colorful.
 2. Add stack trace option.
 3. Add 2 static property userEmail and userId to NKFeedbackMailViewController.
 

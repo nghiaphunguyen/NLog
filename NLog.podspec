@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "NLog"
-  s.version      = "1.1.9"
+  s.version      = "1.2.26"
   s.summary      = "NLog is wrapper of print function"
   s.homepage     = "http://knacker.com"
   s.license      = "MIT"
@@ -14,4 +14,5 @@ Pod::Spec.new do |s|
 
   s.dependency 'RealmSwift', '1.1.0'
   s.dependency 'Realm', '1.1.0'
+  s.dependency 'NLogProtocol', '1.0.0'
 end
