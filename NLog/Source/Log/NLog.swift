@@ -9,7 +9,7 @@
 import UIKit
 import NLogProtocol
 
-open class NLog: NSObject, NLogProtocol {
+open class NLog: NSObject, NKLogProtocol {
     //MARK: Private
     static let kDateFormat = DateFormatter.logDateFormatter()
     static let kDataQueue = DispatchQueue(label: "nlog_data_queue", attributes: [])
