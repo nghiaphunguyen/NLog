@@ -4,6 +4,9 @@
 *Inspired by CocoalumberjackLog and RGA Log.*
 
 # CHANGE LOG 
+**v2.3.4 - 11/03/2016
+
+ 
 **v2.3.3 - 11/03/2016
 
  
